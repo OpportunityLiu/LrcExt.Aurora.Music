@@ -1,0 +1,15 @@
+﻿{
+  "App": {
+    "DisplayName": "极光音乐在线歌词插件",
+    "Description": "搜索来自多个在线数据库的歌词数据"
+  },
+  "Extension": {
+    "DisplayName": "在线歌词插件",
+    "Description": "搜索来自多个在线数据库的歌词数据"
+  },
+  "MainPage": {
+    "DescriptionTextBlock/Text": "这是极光音乐的一个歌词插件，从网易云音乐、千千静听和 ViewLyrics 搜索在线歌词。",
+    "InstallButton/Content": "安装极光音乐",
+    "LaunchButton/Content": "启动极光音乐"
+  }
+}

@@ -1,0 +1,31 @@
+﻿<Page x:Class="Opportunity.LrcExt.Aurora.Music.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Opportunity.LrcExt.Aurora.Music"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:xb="using:Opportunity.Converters.XBind"
+      mc:Ignorable="d">
+  <StackPanel  VerticalAlignment="Center"
+              Padding="12">
+    <TextBlock Margin="4"
+               x:Uid="MainPage/DescriptionTextBlock"
+               Text="This is an extension for Aurora Music, provides lyrics from online databases include Netease Music, TT Music and ViewLyrics."
+               Style="{ThemeResource BodyTextBlockStyle}"
+               HorizontalAlignment="Center" />
+    <Button x:Name="btnLaunch"
+            x:Load="{x:Bind canLaunch}"
+            x:Uid="MainPage/LaunchButton"
+            Margin="4"
+            HorizontalAlignment="Center"
+            Content="Launch Aurora Music"
+            Click="Button_Click" />
+    <Button x:Name="btnInstall"
+            x:Load="{x:Bind xb:Logical.Not(canLaunch)}"
+            x:Uid="MainPage/InstallButton"
+            Margin="4"
+            HorizontalAlignment="Center"
+            Content="Install Aurora Music"
+            Click="Button_Click" />
+  </StackPanel>
+</Page>

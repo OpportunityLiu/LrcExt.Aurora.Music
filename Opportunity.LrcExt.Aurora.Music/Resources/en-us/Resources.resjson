@@ -1,0 +1,15 @@
+﻿{
+  "App": {
+    "DisplayName": "Aurora Music Online Lyrics Extension",
+    "Description": "Search lyrics from online databases."
+  },
+  "Extension": {
+    "DisplayName": "Online Lyrics Extension",
+    "Description": "Search lyrics from online databases."
+  },
+  "MainPage": {
+    "DescriptionTextBlock/Text": "This is an extension for Aurora Music, provides lyrics from online databases include Netease Music, TT Music and ViewLyrics.",
+    "InstallButton/Content": "Install Aurora Music",
+    "LaunchButton/Content": "Launch Aurora Music"
+  }
+}
