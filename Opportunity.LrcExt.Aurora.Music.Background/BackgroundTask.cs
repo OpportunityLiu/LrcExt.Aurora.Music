@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation.Collections;
+using Microsoft.Services.Store.Engagement;
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
@@ -36,8 +37,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             Close();
         }
-
-        private static ValueSet failedData = new ValueSet { ["status"] = 0 };
 
         private int LowerOfThree(int first, int second, int third)
         {
@@ -116,9 +115,10 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 var message = args.Request.Message;
                 if (!message.TryGetValue("q", out var query) || query.ToString() != "lyric")
                 {
-                    await args.Request.SendResponseAsync(failedData);
+                    await args.Request.SendResponseAsync(createFailed("Wrong Input"));
                     return;
                 }
+
                 message.TryGetValue("title", out var t);
                 message.TryGetValue("artist", out var a);
                 var title = (t ?? "").ToString();
@@ -167,21 +167,32 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                     }
                     if (string.IsNullOrWhiteSpace(lrc))
                         continue;
-                    var returnData = new ValueSet { ["status"] = 1, ["result"] = lrc };
-                    await args.Request.SendResponseAsync(returnData);
+                    await args.Request.SendResponseAsync(createSucceed(lrc));
                     return;
                 }
 
                 // Not found in all providers.
-                await args.Request.SendResponseAsync(failedData);
+                await args.Request.SendResponseAsync(createFailed("Not Found"));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await args.Request.SendResponseAsync(failedData);
+                await args.Request.SendResponseAsync(createFailed(ex.Message));
             }
             finally
             {
                 messageDeferral.Complete();
+            }
+
+            ValueSet createFailed(string reason)
+            {
+                StoreServicesCustomEventLogger.GetDefault().Log("Request Lyrics Failed " + reason);
+                return new ValueSet { ["status"] = 0 };
+            }
+
+            ValueSet createSucceed(string lrc)
+            {
+                StoreServicesCustomEventLogger.GetDefault().Log("Request Lyrics Succeed");
+                return new ValueSet { ["status"] = 1, ["result"] = lrc };
             }
         }
 

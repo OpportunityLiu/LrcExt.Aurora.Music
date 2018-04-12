@@ -128,15 +128,26 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.8</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Services.Store.SDK">
+      <Version>10.1705.16001</Version>
+    </PackageReference>
     <PackageReference Include="Opportunity.Helpers.Universal">
       <Version>1.3.3</Version>
     </PackageReference>
     <PackageReference Include="Opportunity.LrcParser">
-      <Version>1.0.1</Version>
+      <Version>1.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISearcher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
+      <Name>Microsoft Engagement Framework</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
