@@ -25,6 +25,11 @@
         <uap:Extension Category="windows.appService" EntryPoint="Opportunity.LrcExt.Aurora.Music.Background.BackgroundTask">
           <uap:AppService Name="Opportunity.LrcExt.Aurora.Music" />
         </uap:Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="Opportunity.LrcExt.Aurora.Music.Background.BackgroundTask">
+          <BackgroundTasks>
+            <Task Type="pushNotification" />
+          </BackgroundTasks>
+        </Extension>
         <uap3:Extension Category="windows.appExtension">
           <uap3:AppExtension Name="Aurora.Music.Extensions" Id="Opportunity.LrcExt.Aurora.Music" PublicFolder="Public" DisplayName="ms-resource:Extension/DisplayName" Description="ms-resource:Extension/Description">
             <uap3:Properties>

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:xb="using:Opportunity.Converters.XBind"
+      xmlns:back="using:Opportunity.LrcExt.Aurora.Music.Background"
       mc:Ignorable="d">
   <StackPanel  VerticalAlignment="Center"
               Padding="12">
@@ -27,5 +28,9 @@
             HorizontalAlignment="Center"
             Content="Install Aurora Music"
             Click="Button_Click" />
+    <ToggleSwitch x:Name="tsUseToast"
+                  Header="Enable toast notification"
+                  HorizontalAlignment="Center"
+                  IsOn="{x:Bind back:AppServiceHandler.UseToast, Mode=TwoWay}"/>
   </StackPanel>
 </Page>
