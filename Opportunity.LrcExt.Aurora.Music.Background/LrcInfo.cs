@@ -1,9 +1,11 @@
 ﻿using System.Text;
 using System;
 using Windows.Foundation;
+using System.Diagnostics;
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
+    [DebuggerDisplay(@"{Artist,nq} - {Title,nq} - {Album,nq}")]
     internal abstract class LrcInfo : ILrcInfo
     {
         public string Artist { get; }

@@ -7,6 +7,7 @@ using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation.Collections;
 using Microsoft.Services.Store.Engagement;
+using Windows.UI.Notifications;
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
@@ -38,14 +39,15 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             Close();
         }
 
-        private int LowerOfThree(int first, int second, int third)
-        {
-            int min = Math.Min(first, second);
-            return Math.Min(min, third);
-        }
-
         private int LevenshteinDistance(string str1, string str2)
         {
+
+            int LowerOfThree(int first, int second, int third)
+            {
+                int min = Math.Min(first, second);
+                return Math.Min(min, third);
+            }
+
             int[,] Matrix;
             int n = str1.Length;
             int m = str2.Length;
@@ -84,7 +86,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 for (j = 1; j <= m; j++)
                 {
                     ch2 = str2[j - 1];
-                    if (ch1.Equals(ch2))
+                    if (StringComparer.CurrentCultureIgnoreCase.Compare(ch1.ToString(), ch2.ToString()) == 0)
                     {
                         temp = 0;
                     }
@@ -95,15 +97,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                     Matrix[i, j] = LowerOfThree(Matrix[i - 1, j] + 1, Matrix[i, j - 1] + 1, Matrix[i - 1, j - 1] + temp);
                 }
             }
-            for (i = 0; i <= n; i++)
-            {
-                for (j = 0; j <= m; j++)
-                {
-                    Console.Write(" {0} ", Matrix[i, j]);
-                }
-                Console.WriteLine("");
-            }
-
             return Matrix[n, m];
         }
 
@@ -121,8 +114,10 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
                 message.TryGetValue("title", out var t);
                 message.TryGetValue("artist", out var a);
+                message.TryGetValue("album", out var al);
                 var title = (t ?? "").ToString();
                 var artist = (a ?? "").ToString();
+                var album = (al ?? "").ToString();
 
                 var r = new List<ILrcInfo>();
                 foreach (var searcher in Searchers.All)
@@ -145,12 +140,17 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                         var td = LevenshteinDistance(info.Title, title);
                         if (td == info.Title.Length || td == title.Length)
                             td = 1000;
+
                         var ad = LevenshteinDistance(info.Artist, artist);
                         if (ad == info.Artist.Length || ad == artist.Length)
                             ad = 1000;
 
+                        var ud = LevenshteinDistance(info.Album, album);
+                        if (ud == info.Artist.Length || ud == artist.Length)
+                            ud = 1000;
+
                         // title has more weight.
-                        return td * 2 + ad;
+                        return td * 20 + ad * 8 + ud * 4;
                     }
                 });
 
