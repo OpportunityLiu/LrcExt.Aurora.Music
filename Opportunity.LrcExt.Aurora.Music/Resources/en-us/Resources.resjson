@@ -10,7 +10,12 @@
   "MainPage": {
     "DescriptionTextBlock/Text": "This is an extension for Aurora Music, provides lyrics from online databases include Netease Music, TT Music and ViewLyrics.",
     "InstallButton/Content": "Install Aurora Music",
-    "LaunchButton/Content": "Launch Aurora Music"
+    "LaunchButton/Content": "Launch Aurora Music",
+    "ToastToggleButton/Header": "Select lyrics file manually",
+    "SettingsTextBlock/Text": "Settings",
+    "AboutTextBlock/Text": "About",
+    "GithubButton/Content": "View source at GitHub",
+    "RatingButton/Content": "Rating and Review"
   },
   "Toast": {
     "Title": "Select lyrics for",

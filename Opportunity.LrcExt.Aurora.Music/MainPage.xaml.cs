@@ -42,7 +42,7 @@ namespace Opportunity.LrcExt.Aurora.Music
 
         private static Uri AuroraSettings = new Uri("as-music:///settings", UriKind.Absolute);
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void btnLaunch_Click(object sender, RoutedEventArgs e)
         {
             var r = await Launcher.QueryUriSupportAsync(AuroraSettings, LaunchQuerySupportType.Uri);
             var lr = false;
@@ -58,6 +58,16 @@ namespace Opportunity.LrcExt.Aurora.Music
             }
             if (lr)
                 Application.Current.Exit();
+        }
+
+        private async void btnGithub_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("https://github.com/OpportunityLiu/LrcExt.Aurora.Music"));
+        }
+
+        private async void btnRating_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9p851q321td3"));
         }
     }
 }

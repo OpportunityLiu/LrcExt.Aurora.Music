@@ -22,19 +22,25 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
-        <uap:Extension Category="windows.appService" EntryPoint="Opportunity.LrcExt.Aurora.Music.Background.BackgroundTask">
-          <uap:AppService Name="Opportunity.LrcExt.Aurora.Music" />
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="as-music-ole" ReturnResults="none" DesiredView="useMinimum">
+            <uap:DisplayName>ms-resource:App/DisplayName</uap:DisplayName>
+          </uap:Protocol>
         </uap:Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="Opportunity.LrcExt.Aurora.Music.Background.BackgroundTask">
           <BackgroundTasks>
             <Task Type="pushNotification" />
           </BackgroundTasks>
         </Extension>
+        <uap:Extension Category="windows.appService" EntryPoint="Opportunity.LrcExt.Aurora.Music.Background.BackgroundTask">
+          <uap:AppService Name="Opportunity.LrcExt.Aurora.Music" />
+        </uap:Extension>
         <uap3:Extension Category="windows.appExtension">
           <uap3:AppExtension Name="Aurora.Music.Extensions" Id="Opportunity.LrcExt.Aurora.Music" PublicFolder="Public" DisplayName="ms-resource:Extension/DisplayName" Description="ms-resource:Extension/Description">
             <uap3:Properties>
               <Service>Opportunity.LrcExt.Aurora.Music</Service>
               <Category>Lyric</Category>
+              <LaunchUri>as-music-ole:</LaunchUri>
             </uap3:Properties>
           </uap3:AppExtension>
         </uap3:Extension>

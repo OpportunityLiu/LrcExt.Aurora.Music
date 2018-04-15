@@ -7,30 +7,74 @@
       xmlns:xb="using:Opportunity.Converters.XBind"
       xmlns:back="using:Opportunity.LrcExt.Aurora.Music.Background"
       mc:Ignorable="d">
-  <StackPanel  VerticalAlignment="Center"
-              Padding="12">
-    <TextBlock Margin="4"
-               x:Uid="MainPage/DescriptionTextBlock"
-               Text="This is an extension for Aurora Music, provides lyrics from online databases include Netease Music, TT Music and ViewLyrics."
-               Style="{ThemeResource BodyTextBlockStyle}"
-               HorizontalAlignment="Center" />
-    <Button x:Name="btnLaunch"
-            x:Load="{x:Bind canLaunch}"
-            x:Uid="MainPage/LaunchButton"
-            Margin="4"
-            HorizontalAlignment="Center"
-            Content="Launch Aurora Music"
-            Click="Button_Click" />
-    <Button x:Name="btnInstall"
-            x:Load="{x:Bind xb:Logical.Not(canLaunch)}"
-            x:Uid="MainPage/InstallButton"
-            Margin="4"
-            HorizontalAlignment="Center"
-            Content="Install Aurora Music"
-            Click="Button_Click" />
-    <ToggleSwitch x:Name="tsUseToast"
-                  Header="Enable toast notification"
-                  HorizontalAlignment="Center"
-                  IsOn="{x:Bind back:AppServiceHandler.UseToast, Mode=TwoWay}"/>
-  </StackPanel>
+  <Page.Resources>
+    <Style x:Key="LinkButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource TextBlockButtonStyle}">
+      <Setter Property="Padding"
+              Value="4" />
+    </Style>
+    <Style x:Key="ActionButtonStyle"
+           TargetType="Button"
+           BasedOn="{StaticResource ButtonRevealStyle}">
+      <Setter Property="Margin"
+              Value="4" />
+      <Setter Property="HorizontalAlignment"
+              Value="Right" />
+    </Style>
+    <Style x:Key="SectionTextBlockStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TitleTextBlockStyle}">
+      <Setter Property="Margin"
+              Value="4,16,4,4" />
+      <Setter Property="HorizontalAlignment"
+              Value="Left" />
+    </Style>
+  </Page.Resources>
+  <ScrollViewer VerticalScrollBarVisibility="Auto"
+                VerticalScrollMode="Auto">
+    <StackPanel MaxWidth="720"
+                HorizontalAlignment="Center"
+                Padding="12,48">
+      <TextBlock x:Name="tbDescreption"
+                 x:Uid="MainPage/DescriptionTextBlock"
+                 HorizontalAlignment="Stretch"
+                 Text="This is an extension for Aurora Music, provides lyrics from online databases include Netease Music, TT Music and ViewLyrics."
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+      <Button x:Name="btnLaunch"
+              x:Load="{x:Bind canLaunch}"
+              Style="{ThemeResource ActionButtonStyle}"
+              x:Uid="MainPage/LaunchButton"
+              Content="Launch Aurora Music"
+              Click="btnLaunch_Click" />
+      <Button x:Name="btnInstall"
+              x:Load="{x:Bind xb:Logical.Not(canLaunch)}"
+              Style="{ThemeResource ActionButtonStyle}"
+              x:Uid="MainPage/InstallButton"
+              Content="Install Aurora Music"
+              Click="btnLaunch_Click" />
+      <TextBlock x:Uid="MainPage/SettingsTextBlock"
+                 Text="Settings"
+                 Style="{ThemeResource SectionTextBlockStyle}" />
+      <ToggleSwitch x:Name="tsUseToast"
+                    x:Uid="MainPage/ToastToggleButton"
+                    RelativePanel.Below="gdAururoActions"
+                    Header="Enable toast notification"
+                    Margin="4"
+                    IsOn="{x:Bind back:AppServiceHandler.UseToast, Mode=TwoWay}" />
+      <TextBlock x:Uid="MainPage/AboutTextBlock"
+                 Text="About"
+                 Style="{ThemeResource SectionTextBlockStyle}"/>
+      <Button x:Name="btnRating"
+              x:Uid="MainPage/RatingButton"
+              Click="btnRating_Click"
+              Content="Rating and Review"
+              Style="{ThemeResource LinkButtonStyle}" />
+      <Button x:Name="btnGithub"
+              x:Uid="MainPage/GithubButton"
+              Click="btnGithub_Click"
+              Content="View Source at GitHub"
+              Style="{ThemeResource LinkButtonStyle}" />
+    </StackPanel>
+  </ScrollViewer>
 </Page>
