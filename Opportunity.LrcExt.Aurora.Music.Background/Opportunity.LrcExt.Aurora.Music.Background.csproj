@@ -115,11 +115,13 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BackgroundTask.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="ActivationBackgroundTask.cs" />
+    <Compile Include="AppServiceHandler.cs" />
     <Compile Include="ILrcInfo.cs" />
     <Compile Include="LrcInfo.cs" />
     <Compile Include="NeteaseSearcher.cs" />
+    <Compile Include="ServiceBackgroundTask.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="Strings.g.cs" />
     <Compile Include="TTSearcher.cs" />

@@ -61,7 +61,7 @@
                     RelativePanel.Below="gdAururoActions"
                     Header="Enable toast notification"
                     Margin="4"
-                    IsOn="{x:Bind back:AppServiceHandler.UseToast, Mode=TwoWay}" />
+                    IsOn="{x:Bind back:Settings.UseToast, Mode=TwoWay}" />
       <TextBlock x:Uid="MainPage/AboutTextBlock"
                  Text="About"
                  Style="{ThemeResource SectionTextBlockStyle}"/>

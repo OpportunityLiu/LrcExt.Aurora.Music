@@ -13,6 +13,21 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     internal sealed class ViewLyricsSearcher : ISearcher
     {
+        private static readonly HttpClient HttpClient = getClient();
+
+        private static HttpClient getClient()
+        {
+
+            var r = new HttpClient
+            {
+                DefaultRequestHeaders =
+                {
+                   ["User-Agent"]="MiniLyrics"
+                }
+            };
+            return r;
+        }
+
         private const string url = "http://search.crintsoft.com/searchlyrics.htm";
         private const string clientUserAgent = "MiniLyrics";
         private const string clientTag = "client=\"ViewLyricsOpenSearcher\"";
@@ -28,7 +43,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         private static async Task<IEnumerable<ILrcInfo>> searchQuery(string searchQuery)
         {
-            var r = await Helper.HttpClient.PostAsync(new Uri(url), new HttpBufferContent(assembleQuery(searchQuery).AsBuffer()));
+            var r = await HttpClient.PostAsync(new Uri(url), new HttpBufferContent(assembleQuery(searchQuery).AsBuffer()));
 
             var data = (await r.Content.ReadAsBufferAsync()).ToArray();
             var xml = decryptResultXML(data);
@@ -120,6 +135,8 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         private sealed class VLLrcInfo : LrcInfo
         {
+            private static readonly HttpClient httpClient = new HttpClient();
+
             private readonly Uri lrcUri;
 
             internal VLLrcInfo(string title, string artist, string album, Uri lrcUri) : base(title, artist, album)
@@ -128,22 +145,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             }
 
             public override IAsyncOperation<string> FetchLryics()
-                => HttpClient.GetStringAsync(this.lrcUri).AsAsyncOperation();
-        }
-
-        internal static readonly HttpClient HttpClient = getClient();
-
-        private static HttpClient getClient()
-        {
-
-            var r = new HttpClient
-            {
-                DefaultRequestHeaders =
-                {
-                   ["User-Agent"]="MiniLyrics"
-                }
-            };
-            return r;
+                => httpClient.GetStringAsync(this.lrcUri).AsAsyncOperation();
         }
     }
 }
