@@ -311,20 +311,29 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
             int getScore((string Title, string Artist, string Album) info)
             {
-                var td = StringHelper.LevenshteinDistance(info.Title, this.title);
-                if (td == info.Title.Length || td == this.title.Length)
-                    td = this.title.Length * 2;
+                var td = distance(info.Title, this.title);
 
-                var ad = StringHelper.LevenshteinDistance(info.Artist, this.artist);
-                if (ad == info.Artist.Length || ad == this.artist.Length)
-                    ad = this.artist.Length * 2;
+                var ad = distance(info.Artist, this.artist);
 
-                var ud = StringHelper.LevenshteinDistance(info.Album, this.album);
-                if (ud == info.Album.Length || ud == this.album.Length)
-                    ud = this.album.Length * 2;
+                var ud = distance(info.Album, this.album);
 
                 // title has more weight.
                 return td * 20 + ad * 8 + ud * 4;
+
+                int distance(string value, string cbase)
+                {
+                    var vc = value.Contains(cbase, StringComparison.OrdinalIgnoreCase);
+                    var cc = cbase.Contains(value, StringComparison.OrdinalIgnoreCase);
+                    if (vc && cc)
+                        return 0;
+                    var ed = StringHelper.LevenshteinDistance(value, cbase);
+                    if (ed == value.Length || ed == cbase.Length)
+                        ed = cbase.Length * 2;
+
+                    if (vc || cc)
+                        ed /= 2;
+                    return ed;
+                }
             }
         });
 
