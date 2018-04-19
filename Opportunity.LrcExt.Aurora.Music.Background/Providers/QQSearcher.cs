@@ -78,7 +78,9 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                     using (var stream = Encoding.UTF8.GetBytes(str).AsBuffer().AsStream())
                     {
                         var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
-                        if (data.code != 0 || string.IsNullOrEmpty(data.lyric) || data.lyric == "WzAwOjAwOjAwXeatpOatjOabsuS4uuayoeacieWhq+ivjeeahOe6r+mfs+S5kO+8jOivt+aCqOaso+i1jw==")
+                        if (data.code != 0 || string.IsNullOrEmpty(data.lyric) ||
+                            //"[00:00:00]此歌曲为没有填词的纯音乐，请您欣赏"
+                            data.lyric == "WzAwOjAwOjAwXeatpOatjOabsuS4uuayoeacieWhq+ivjeeahOe6r+mfs+S5kO+8jOivt+aCqOaso+i1jw==")
                             return "";
                         var lyric = Lyrics.Parse<Line>(Encoding.UTF8.GetString(Convert.FromBase64String(data.lyric)));
                         if (lyric.Lines.Count == 0)
