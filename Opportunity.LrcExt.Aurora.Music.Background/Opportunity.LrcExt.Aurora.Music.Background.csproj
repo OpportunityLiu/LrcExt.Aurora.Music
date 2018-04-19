@@ -117,15 +117,15 @@
   <ItemGroup>
     <Compile Include="ActivationBackgroundTask.cs" />
     <Compile Include="AppServiceHandler.cs" />
-    <Compile Include="ILrcInfo.cs" />
-    <Compile Include="LrcInfo.cs" />
-    <Compile Include="NeteaseSearcher.cs" />
+    <Compile Include="Providers\ILrcInfo.cs" />
+    <Compile Include="Providers\LrcInfo.cs" />
+    <Compile Include="Providers\NeteaseSearcher.cs" />
     <Compile Include="ServiceBackgroundTask.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StringHelper.cs" />
-    <Compile Include="Strings.g.cs" />
-    <Compile Include="TTSearcher.cs" />
-    <Compile Include="ViewLyricsSearcher.cs" />
+    <Compile Include="Resources\Strings.g.cs" />
+    <Compile Include="Providers\TTSearcher.cs" />
+    <Compile Include="Providers\ViewLyricsSearcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,7 +149,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISearcher.cs" />
+    <Compile Include="Providers\ISearcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
@@ -160,7 +160,7 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Strings.resgenconfig" />
+    <None Include="Resources\Strings.resgenconfig" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

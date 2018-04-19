@@ -16,7 +16,8 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     internal sealed class AppServiceHandler
     {
-        private static SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
+        private static readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
 
         private AppServiceDeferral deferral;
         private AppServiceConnection connection;
@@ -159,10 +160,57 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             toast.Failed += this.ToastNotif_Failed;
 
             // And send the notification
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+            toastNotifier.Show(toast);
         }
 
         private ToastNotification toast;
+
+        private bool closeToast()
+        {
+            var toast = Interlocked.Exchange(ref this.toast, null);
+            if (toast is null)
+                return false;
+            toast.Dismissed -= this.ToastNotif_Dismissed;
+            toast.Failed -= this.ToastNotif_Failed;
+            toast.Activated -= this.ToastNotif_Activated;
+            toastNotifier.Hide(toast);
+            return true;
+        }
+
+        private void ToastNotif_Activated(ToastNotification sender, object args)
+        {
+            var e = (ToastActivatedEventArgs)args;
+            if (string.IsNullOrEmpty(e.Arguments))
+            {
+                // Foreground activation
+                if (closeToast())
+                    sendSelection();
+            }
+        }
+        private void ToastNotif_Failed(ToastNotification sender, ToastFailedEventArgs args)
+        {
+            if (closeToast())
+                sendSelection();
+        }
+        private void ToastNotif_Dismissed(ToastNotification sender, ToastDismissedEventArgs args)
+        {
+            if (closeToast())
+                sendSelection();
+        }
+        public void ToastActivated(ToastNotificationActionTriggerDetail args)
+        {
+            if (closeToast())
+            {
+                if (args.Argument.EndsWith("sel"))
+                {
+                    var index = int.Parse(args.UserInput["lrc"].ToString());
+                    var item = this.lrcCandidates[index];
+                    this.lrcCandidates.RemoveAt(index);
+                    this.lrcCandidates.Insert(0, item);
+                }
+                sendSelection();
+            }
+        }
 
         private async void sendCached()
         {
@@ -249,52 +297,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             this.connection = null;
             def.Complete();
             semaphore.Release();
-        }
-
-        private bool closeToast()
-        {
-            var toast = Interlocked.Exchange(ref this.toast, null);
-            if (toast is null)
-                return false;
-            toast.Dismissed -= this.ToastNotif_Dismissed;
-            toast.Failed -= this.ToastNotif_Failed;
-            toast.Activated -= this.ToastNotif_Activated;
-            return true;
-        }
-
-        private void ToastNotif_Activated(ToastNotification sender, object args)
-        {
-            var e = (ToastActivatedEventArgs)args;
-            if (string.IsNullOrEmpty(e.Arguments))
-            {
-                // Foreground activation
-                if (closeToast())
-                    sendSelection();
-            }
-        }
-        private void ToastNotif_Failed(ToastNotification sender, ToastFailedEventArgs args)
-        {
-            if (closeToast())
-                sendSelection();
-        }
-        private void ToastNotif_Dismissed(ToastNotification sender, ToastDismissedEventArgs args)
-        {
-            if (closeToast())
-                sendSelection();
-        }
-        public void ToastActivated(ToastNotificationActionTriggerDetail args)
-        {
-            if (closeToast())
-            {
-                if (args.Argument.EndsWith("sel"))
-                {
-                    var index = int.Parse(args.UserInput["lrc"].ToString());
-                    var item = this.lrcCandidates[index];
-                    this.lrcCandidates.RemoveAt(index);
-                    this.lrcCandidates.Insert(0, item);
-                }
-                sendSelection();
-            }
         }
 
         private void sortResult() => this.lrcCandidates.Sort((i, j) =>
