@@ -164,6 +164,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
             // And send the notification
             toastNotifier.Show(toast);
+            StoreServicesCustomEventLogger.GetDefault().Log("Choose Toast Send");
         }
 
         private ToastNotification toast;
@@ -182,6 +183,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         private void ToastNotif_Activated(ToastNotification sender, object args)
         {
+            StoreServicesCustomEventLogger.GetDefault().Log("Choose Toast Activated");
             var e = (ToastActivatedEventArgs)args;
             if (string.IsNullOrEmpty(e.Arguments))
             {
@@ -197,6 +199,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         }
         private void ToastNotif_Dismissed(ToastNotification sender, ToastDismissedEventArgs args)
         {
+            StoreServicesCustomEventLogger.GetDefault().Log("Choose Toast Dismissed");
             if (closeToast())
                 sendSelection();
         }
