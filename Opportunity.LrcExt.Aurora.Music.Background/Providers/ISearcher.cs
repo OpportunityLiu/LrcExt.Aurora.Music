@@ -14,7 +14,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         public static ISearcher NeteaseSearcher { get; } = new NeteaseSearcher();
         public static ISearcher ViewLyricsSearcher { get; } = new ViewLyricsSearcher();
         public static ISearcher TTSearcher { get; } = new TTSearcher();
-        public static ISearcher BaiduSearcher { get; } = new BaiduSearcher();
         public static ISearcher QQSearcher { get; } = new QQSearcher();
 
         public static IEnumerable<ISearcher> All
@@ -24,7 +23,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 yield return NeteaseSearcher;
                 yield return QQSearcher;
                 yield return ViewLyricsSearcher;
-                yield return BaiduSearcher;
                 yield return TTSearcher;
             }
         }

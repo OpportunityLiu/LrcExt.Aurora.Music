@@ -119,7 +119,6 @@
     <Compile Include="AppServiceHandler.cs" />
     <Compile Include="Providers\ILrcInfo.cs" />
     <Compile Include="Providers\LrcInfo.cs" />
-    <Compile Include="Providers\BaiduSearcher.cs" />
     <Compile Include="Providers\QQSearcher.cs" />
     <Compile Include="Providers\NeteaseSearcher.cs" />
     <Compile Include="ServiceBackgroundTask.cs" />
