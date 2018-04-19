@@ -18,7 +18,14 @@
     "RatingButton/Content": "打分和评价"
   },
   "Toast": {
-    "Title": "选择歌词",
+    "Title": "选择歌词…",
+    "$ContentLine1": "{title}",
+    "$ContentLine2": "{artist} - {album}",
+    "$ContentLine2NoArtist": "{album}",
+    "$ContentLine2NoAlbum": "{artist}",
+    "$Selection": "{title} ({artist} - {album})",
+    "$SelectionNoArtist": "{title} ({album})",
+    "$SelectionNoAlbum": "{title} ({artist})",
     "Select": "选择"
   }
 }

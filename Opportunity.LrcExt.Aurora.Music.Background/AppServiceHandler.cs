@@ -94,21 +94,39 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             var bg = new ToastBindingGeneric();
             bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.Title });
-            bg.Children.Add(new AdaptiveText { Text = this.title });
-            if (string.IsNullOrEmpty(this.artist) || string.IsNullOrEmpty(this.album))
+            bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine1(this.title) });
+            if (string.IsNullOrEmpty(this.artist))
             {
-                bg.Children.Add(new AdaptiveText { Text = this.artist + this.album });
+                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoArtist(this.album) });
+            }
+            else if (string.IsNullOrEmpty(this.album))
+            {
+                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoAlbum(this.artist) });
             }
             else
             {
-                bg.Children.Add(new AdaptiveText { Text = this.artist + " - " + this.album });
+                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2(this.artist, this.album) });
             }
 
             var se = new ToastSelectionBox("lrc") { DefaultSelectionBoxItemId = "0" };
             for (var i = 0; i < Math.Min(this.lrcCandidates.Count, 5); i++)
             {
                 var item = this.lrcCandidates[i];
-                se.Items.Add(new ToastSelectionBoxItem(i.ToString(), $"{item.Title} ({item.Artist} - {item.Album})"));
+                var content = "";
+                if (string.IsNullOrEmpty(item.Artist))
+                {
+                    content = Strings.Resources.Toast.SelectionNoArtist(item.Title, item.Album);
+                }
+                else if (string.IsNullOrEmpty(item.Album))
+                {
+                    content = Strings.Resources.Toast.SelectionNoAlbum(item.Title, item.Artist);
+                }
+                else
+                {
+                    content = Strings.Resources.Toast.Selection(item.Title, item.Artist, item.Album);
+                }
+
+                se.Items.Add(new ToastSelectionBoxItem(i.ToString(), content));
             }
 
             var toastContent = new ToastContent()
