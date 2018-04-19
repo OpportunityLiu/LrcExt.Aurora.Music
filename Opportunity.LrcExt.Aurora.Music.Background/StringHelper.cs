@@ -4,11 +4,8 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     public static class StringHelper
     {
-
-
         public static int LevenshteinDistance(string str1, string str2)
         {
-
             int LowerOfThree(int first, int second, int third)
             {
                 int min = Math.Min(first, second);

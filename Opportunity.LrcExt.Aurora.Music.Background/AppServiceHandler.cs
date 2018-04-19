@@ -23,7 +23,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         private AppServiceConnection connection;
         private AppServiceRequest request;
 
-        private List<ILrcInfo> lrcCandidates = new List<ILrcInfo>();
+        private List<IGrouping<(string Title, string Artist, string Album), ILrcInfo>> lrcCandidates;
 
         public AppServiceHandler(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
         {
@@ -39,7 +39,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             try
             {
-                await semaphore.WaitAsync();
                 var message = this.request.Message;
                 if (!message.TryGetValue("q", out var query) || query.ToString() != "lyric")
                 {
@@ -53,6 +52,8 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 this.title = (t ?? "").ToString();
                 this.artist = (a ?? "").ToString();
                 this.album = (al ?? "").ToString();
+
+                await semaphore.WaitAsync();
 
                 if (this.title == Settings.PreviousTitle &&
                     this.artist == Settings.PreviousArtist &&
@@ -68,14 +69,16 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                     await Task.WhenAll(searchTasks);
                 }
                 catch { }
+                var candidates = new List<ILrcInfo>();
                 foreach (var task in searchTasks)
                 {
                     try
                     {
-                        this.lrcCandidates.AddRange(task.Result);
+                        candidates.AddRange(task.Result);
                     }
                     catch { }
                 }
+                this.lrcCandidates = candidates.GroupBy(i => (i.Title, i.Artist, i.Album)).ToList();
                 sortResult();
                 if (this.lrcCandidates.Count > 1 && Settings.UseToast)
                 {
@@ -114,17 +117,17 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             {
                 var item = this.lrcCandidates[i];
                 var content = "";
-                if (string.IsNullOrEmpty(item.Artist))
+                if (string.IsNullOrEmpty(item.Key.Artist))
                 {
-                    content = Strings.Resources.Toast.SelectionNoArtist(item.Title, item.Album);
+                    content = Strings.Resources.Toast.SelectionNoArtist(item.Key.Title, item.Key.Album);
                 }
-                else if (string.IsNullOrEmpty(item.Album))
+                else if (string.IsNullOrEmpty(item.Key.Album))
                 {
-                    content = Strings.Resources.Toast.SelectionNoAlbum(item.Title, item.Artist);
+                    content = Strings.Resources.Toast.SelectionNoAlbum(item.Key.Title, item.Key.Artist);
                 }
                 else
                 {
-                    content = Strings.Resources.Toast.Selection(item.Title, item.Artist, item.Album);
+                    content = Strings.Resources.Toast.Selection(item.Key.Title, item.Key.Artist, item.Key.Album);
                 }
 
                 se.Items.Add(new ToastSelectionBoxItem(i.ToString(), content));
@@ -259,23 +262,26 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             try
             {
-                foreach (var item in this.lrcCandidates)
+                foreach (var info in this.lrcCandidates)
                 {
-                    var lrc = default(string);
-                    try
+                    foreach (var item in info)
                     {
-                        Debug.WriteLine($"Load lrc: {item}, {GetHashCode()}");
-                        lrc = await item.FetchLryics();
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                    if (string.IsNullOrWhiteSpace(lrc))
-                        continue;
+                        var lrc = default(string);
+                        try
+                        {
+                            Debug.WriteLine($"Load lrc: {item}, {GetHashCode()}");
+                            lrc = await item.FetchLryics();
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                        if (string.IsNullOrWhiteSpace(lrc))
+                            continue;
 
-                    sendResult(lrc);
-                    return;
+                        sendResult(lrc);
+                        return;
+                    }
                 }
 
                 // Not found in all providers.
@@ -301,21 +307,21 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         private void sortResult() => this.lrcCandidates.Sort((i, j) =>
         {
-            return getScore(i).CompareTo(getScore(j));
+            return getScore(i.Key).CompareTo(getScore(j.Key));
 
-            int getScore(ILrcInfo info)
+            int getScore((string Title, string Artist, string Album) info)
             {
                 var td = StringHelper.LevenshteinDistance(info.Title, this.title);
                 if (td == info.Title.Length || td == this.title.Length)
-                    td = 1000;
+                    td = this.title.Length * 2;
 
                 var ad = StringHelper.LevenshteinDistance(info.Artist, this.artist);
                 if (ad == info.Artist.Length || ad == this.artist.Length)
-                    ad = 1000;
+                    ad = this.artist.Length * 2;
 
                 var ud = StringHelper.LevenshteinDistance(info.Album, this.album);
                 if (ud == info.Album.Length || ud == this.album.Length)
-                    ud = 1000;
+                    ud = this.album.Length * 2;
 
                 // title has more weight.
                 return td * 20 + ad * 8 + ud * 4;

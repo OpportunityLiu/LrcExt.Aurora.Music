@@ -13,21 +13,15 @@ using Windows.Web.Http;
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
-    internal sealed class NeteaseSearcher : ISearcher
+    internal sealed class QQSearcher : ISearcher
     {
         private static HttpClient httpClient = new HttpClient
         {
             DefaultRequestHeaders =
             {
-                Referer = new Uri("http://music.163.com/"),
-                Cookie =
-                {
-                    new Windows.Web.Http.Headers.HttpCookiePairHeaderValue("appver","1.5.0.75771"),
-                },
+                Referer = new Uri("https://y.qq.com/"),
             }
         };
-
-        private static readonly Uri SEARCH_URI = new Uri("http://music.163.com/api/search/pc");
 
         private static readonly DataContractJsonSerializer searchJsonSerializer = new DataContractJsonSerializer(typeof(SearchResult));
 
@@ -35,31 +29,23 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             return AsyncInfo.Run<IEnumerable<ILrcInfo>>(async token =>
             {
-                var s = new Dictionary<string, string>
-                {
-                    ["s"] = title,
-                    ["offset"] = "0",
-                    ["limit"] = "5",
-                    ["type"] = "1",
-                };
-                var r = await httpClient.PostAsync(SEARCH_URI, new HttpFormUrlEncodedContent(s));
-                var buf = await r.Content.ReadAsBufferAsync();
+                var buf = await httpClient.GetBufferAsync(new Uri("https://c.y.qq.com/soso/fcgi-bin/client_search_cp?format=json&remoteplace=txt.yqq.song&w=" + title));
                 using (var stream = buf.AsStream())
                 {
                     var data = (SearchResult)searchJsonSerializer.ReadObject(stream);
-                    if (data.code != 200 || data.result.songs is null || data.result.songs.Length == 0)
+                    if (data.code != 0 || data.data.song.list is null || data.data.song.list.Length == 0)
                         return Array.Empty<ILrcInfo>();
-                    var lrc = new NeteaseLrcInfo[data.result.songs.Length];
+                    var lrc = new QQLrcInfo[data.data.song.list.Length];
                     for (var i = 0; i < lrc.Length; i++)
                     {
-                        lrc[i] = new NeteaseLrcInfo(data.result.songs[i]);
+                        lrc[i] = new QQLrcInfo(data.data.song.list[i]);
                     }
                     return lrc;
                 }
             });
         }
 
-        private sealed class NeteaseLrcInfo : LrcInfo
+        private sealed class QQLrcInfo : LrcInfo
         {
             private static readonly DataContractJsonSerializer lrcJsonSerializer = new DataContractJsonSerializer(typeof(LrcResult));
 
@@ -67,26 +53,17 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             public class LrcResult
             {
                 [DataMember]
-                public Lrc lrc { get; set; }
-                [DataMember]
                 public int code { get; set; }
-            }
-
-            [DataContract]
-            public class Lrc
-            {
-                [DataMember]
-                public int version { get; set; }
                 [DataMember]
                 public string lyric { get; set; }
             }
 
-            internal NeteaseLrcInfo(Song song)
-                : base(song.name ?? "",
-                      song.artists is null ? "" : string.Join(", ", song.artists.Select(a => a?.name ?? "")),
-                      song?.album?.name ?? "")
+            internal QQLrcInfo(Song song)
+                : base(song.songname ?? "",
+                      song.singer is null ? "" : string.Join(", ", song.singer.Select(s => s?.name ?? "")),
+                      song.albumname ?? "")
             {
-                this.id = song.id;
+                this.id = song.songid;
             }
 
             private readonly int id;
@@ -95,14 +72,15 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             {
                 return AsyncInfo.Run(async token =>
                 {
-                    var uri = new Uri($"http://music.163.com/api/song/lyric?os=pc&id={this.id.ToString()}&lv=-1");
-                    var buf = await httpClient.GetBufferAsync(uri);
-                    using (var stream = buf.AsStream())
+                    var uri = new Uri("https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?format=json&callback=cb&musicid=" + this.id);
+                    var str = await httpClient.GetStringAsync(uri);
+                    str = str.Substring(3, str.Length - 4);
+                    using (var stream = Encoding.UTF8.GetBytes(str).AsBuffer().AsStream())
                     {
                         var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
-                        if (data.code != 200 || data?.lrc?.lyric is null)
+                        if (data.code != 0 || string.IsNullOrEmpty(data.lyric) || data.lyric == "WzAwOjAwOjAwXeatpOatjOabsuS4uuayoeacieWhq+ivjeeahOe6r+mfs+S5kO+8jOivt+aCqOaso+i1jw==")
                             return "";
-                        var lyric = Lyrics.Parse<Line>(data.lrc.lyric);
+                        var lyric = Lyrics.Parse<Line>(Encoding.UTF8.GetString(Convert.FromBase64String(data.lyric)));
                         if (lyric.Lines.Count == 0)
                         {
                             return null;
@@ -122,56 +100,51 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             }
         }
 
-
         [DataContract]
         public class SearchResult
         {
             [DataMember]
-            public Result result { get; set; }
-            [DataMember]
             public int code { get; set; }
+            [DataMember]
+            public Data data { get; set; }
         }
 
         [DataContract]
-        public class Result
+        public class Data
         {
             [DataMember]
-            public Song[] songs { get; set; }
+            public Songs song { get; set; }
+        }
+
+        [DataContract]
+        public class Songs
+        {
             [DataMember]
-            public int songCount { get; set; }
+            public Song[] list { get; set; }
         }
 
         [DataContract]
         public class Song
         {
             [DataMember]
-            public string name { get; set; }
+            public string lyric { get; set; }
             [DataMember]
-            public int id { get; set; }
+            public Singer[] singer { get; set; }
             [DataMember]
-            public Artist[] artists { get; set; }
+            public int songid { get; set; }
             [DataMember]
-            public Album album { get; set; }
+            public string songname { get; set; }
+            [DataMember]
+            public string albumname { get; set; }
         }
 
         [DataContract]
-        public class Album
+        public class Singer
         {
-            [DataMember]
-            public string name { get; set; }
             [DataMember]
             public int id { get; set; }
             [DataMember]
-            public Artist[] artists { get; set; }
-        }
-
-        [DataContract]
-        public class Artist
-        {
-            [DataMember]
             public string name { get; set; }
-            [DataMember]
-            public int id { get; set; }
         }
     }
 }
