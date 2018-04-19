@@ -10,22 +10,23 @@ using System.Threading;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Foundation;
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     internal sealed class AppServiceHandler
     {
-        private AppServiceDeferral deferral;
-        internal AppServiceConnection Connection;
-        private AppServiceRequest request;
-
         private static SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
+
+        private AppServiceDeferral deferral;
+        private AppServiceConnection connection;
+        private AppServiceRequest request;
 
         private List<ILrcInfo> lrcCandidates = new List<ILrcInfo>();
 
         public AppServiceHandler(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
         {
-            this.Connection = sender;
+            this.connection = sender;
             this.deferral = args.GetDeferral();
             this.request = args.Request;
             start();
@@ -226,9 +227,9 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             var def = Interlocked.Exchange(ref this.deferral, null);
             if (def is null)
                 return;
-            def.Complete();
             this.request = null;
-            this.Connection = null;
+            this.connection = null;
+            def.Complete();
             semaphore.Release();
         }
 
@@ -248,6 +249,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             var e = (ToastActivatedEventArgs)args;
             if (string.IsNullOrEmpty(e.Arguments))
             {
+                // Foreground activation
                 if (closeToast())
                     sendSelection();
             }
@@ -262,7 +264,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             if (closeToast())
                 sendSelection();
         }
-
         public void ToastActivated(ToastNotificationActionTriggerDetail args)
         {
             if (closeToast())
@@ -303,12 +304,20 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         public static readonly List<AppServiceHandler> Handlers = new List<AppServiceHandler>();
 
-        public static void RemoveUnused()
+        public static void RemoveUnused(AppServiceConnection closingConnection)
         {
-            var toremove = Handlers.Where(i => i.deferral is null).ToList();
-
             lock (Handlers)
-                Handlers.RemoveAll(i => i.deferral is null);
+                Handlers.RemoveAll(i =>
+                {
+                    if (i.deferral is null)
+                        return true;
+                    if (i.connection == closingConnection)
+                    {
+                        i.Close();
+                        return true;
+                    }
+                    return false;
+                });
         }
     }
 }

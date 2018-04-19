@@ -67,25 +67,21 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         private void Close()
         {
-            AppServiceHandler.RemoveUnused();
-
-            if (this.taskDeferral is null)
+            var taskDeferral = Interlocked.Exchange(ref this.taskDeferral, null);
+            if (taskDeferral is null)
                 return;
-            var toremove = AppServiceHandler.Handlers.Where(i => i.Connection == this.appServiceConnection).ToList();
 
-            lock (AppServiceHandler.Handlers)
-                AppServiceHandler.Handlers.RemoveAll(i => i.Connection == this.appServiceConnection);
+            AppServiceHandler.RemoveUnused(this.appServiceConnection);
 
-            foreach (var item in toremove)
-            {
-                item.Close();
-            }
-
-            this.taskDeferral.Complete();
-            this.taskDeferral = null;
             this.appServiceConnection.RequestReceived -= OnAppServiceRequestReceived;
             this.appServiceConnection.ServiceClosed -= OnServiceClosed;
+            this.appServiceConnection.Dispose();
+            this.appServiceConnection = null;
+
             this.taskInstance.Canceled -= OnBackgroundTaskCanceled;
+            this.taskInstance = null;
+
+            taskDeferral.Complete();
         }
     }
 }
