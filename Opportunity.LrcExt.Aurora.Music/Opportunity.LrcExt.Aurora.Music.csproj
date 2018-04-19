@@ -103,14 +103,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Strings.g.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Opportunity.LrcExt.Aurora.Music_StoreKey.pfx" />
-    <None Include="Resources\Strings.resgenconfig" />
     <PRIResource Include="Resources\en-us\Resources.resjson" />
     <PRIResource Include="Resources\zh-hans\Resources.resjson" />
   </ItemGroup>
@@ -184,7 +182,7 @@
       <Version>2.2.4</Version>
     </PackageReference>
     <PackageReference Include="Opportunity.ResourceGenerator">
-      <Version>1.3.7</Version>
+      <Version>1.3.8</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
