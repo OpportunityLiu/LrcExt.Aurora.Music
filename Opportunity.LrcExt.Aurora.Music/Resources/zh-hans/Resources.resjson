@@ -26,6 +26,7 @@
     "$Selection": "{title} ({artist} - {album})",
     "$SelectionNoArtist": "{title} ({album})",
     "$SelectionNoAlbum": "{title} ({artist})",
+    "$SelectionTitleOnly": "{title}",
     "Select": "选择"
   }
 }

@@ -99,11 +99,17 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             var bg = new ToastBindingGeneric();
             bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.Title });
             bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine1(this.title) });
-            if (string.IsNullOrEmpty(this.artist))
+            var arNull = string.IsNullOrEmpty(this.artist);
+            var alNull = string.IsNullOrEmpty(this.album);
+            if (arNull && alNull)
+            {
+                // No Line 2
+            }
+            if (arNull)
             {
                 bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoArtist(this.album) });
             }
-            else if (string.IsNullOrEmpty(this.album))
+            else if (alNull)
             {
                 bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoAlbum(this.artist) });
             }
@@ -113,15 +119,21 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             }
 
             var se = new ToastSelectionBox("lrc") { DefaultSelectionBoxItemId = "0" };
-            for (var i = 0; i < Math.Min(this.lrcCandidates.Count, 5); i++)
+            var i = 0;
+            foreach (var item in this.lrcCandidates.Take(5))
             {
-                var item = this.lrcCandidates[i];
                 var content = "";
-                if (string.IsNullOrEmpty(item.Key.Artist))
+                var sArNull = string.IsNullOrEmpty(item.Key.Artist);
+                var sAuNull = string.IsNullOrEmpty(item.Key.Album);
+                if (sArNull && sAuNull)
+                {
+                    content = Strings.Resources.Toast.SelectionTitleOnly(item.Key.Title);
+                }
+                if (sArNull)
                 {
                     content = Strings.Resources.Toast.SelectionNoArtist(item.Key.Title, item.Key.Album);
                 }
-                else if (string.IsNullOrEmpty(item.Key.Album))
+                else if (sAuNull)
                 {
                     content = Strings.Resources.Toast.SelectionNoAlbum(item.Key.Title, item.Key.Artist);
                 }
@@ -131,6 +143,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 }
 
                 se.Items.Add(new ToastSelectionBoxItem(i.ToString(), content));
+                i++;
             }
 
             var toastContent = new ToastContent()
