@@ -327,9 +327,12 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                     if (vc && cc)
                         return 0;
                     var ed = StringHelper.LevenshteinDistance(value, cbase);
+
+                    // give same base score for all irrelevant strings
                     if (ed == value.Length || ed == cbase.Length)
                         ed = cbase.Length * 2;
 
+                    // bonus for sub strings
                     if (vc || cc)
                         ed /= 2;
                     return ed;
