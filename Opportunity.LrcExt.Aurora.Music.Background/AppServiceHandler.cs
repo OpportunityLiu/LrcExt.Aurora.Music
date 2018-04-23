@@ -19,6 +19,16 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
         private static readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
 
+        private class Cache
+        {
+            public string Artist;
+            public string Title;
+            public string Album;
+            public string Lrc;
+        }
+
+        private static Cache cache;
+
         private AppServiceDeferral deferral;
         private AppServiceConnection connection;
         private AppServiceRequest request;
@@ -55,11 +65,13 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
                 await semaphore.WaitAsync();
 
-                if (this.title == Settings.PreviousTitle &&
-                    this.artist == Settings.PreviousArtist &&
-                    this.album == Settings.PreviousAlbum)
+                var lrcCache = cache;
+                if (lrcCache != null &&
+                    this.title == lrcCache.Title &&
+                    this.artist == lrcCache.Artist &&
+                    this.album == lrcCache.Album)
                 {
-                    sendCached();
+                    sendCached(lrcCache.Lrc);
                     return;
                 }
 
@@ -231,12 +243,12 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             }
         }
 
-        private async void sendCached()
+        private async void sendCached(string lrc)
         {
             try
             {
                 StoreServicesCustomEventLogger.GetDefault().Log("Request Lyrics Cached");
-                await this.request.SendResponseAsync(new ValueSet { ["status"] = 1, ["result"] = Settings.PreviousLrc });
+                await this.request.SendResponseAsync(new ValueSet { ["status"] = 1, ["result"] = lrc });
             }
             finally
             {
@@ -248,10 +260,13 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             try
             {
-                Settings.PreviousAlbum = this.album;
-                Settings.PreviousArtist = this.artist;
-                Settings.PreviousTitle = this.title;
-                Settings.PreviousLrc = lrc;
+                cache = new Cache
+                {
+                    Album = this.album,
+                    Artist = this.artist,
+                    Title = this.title,
+                    Lrc = lrc,
+                };
                 StoreServicesCustomEventLogger.GetDefault().Log("Request Lyrics Succeed");
                 await this.request.SendResponseAsync(new ValueSet { ["status"] = 1, ["result"] = lrc });
             }
