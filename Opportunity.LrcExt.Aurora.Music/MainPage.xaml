@@ -30,6 +30,12 @@
       <Setter Property="HorizontalAlignment"
               Value="Left" />
     </Style>
+    <Style x:Key="ContentTextBlockStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BodyTextBlockStyle}">
+      <Setter Property="Margin"
+              Value="4" />
+    </Style>
   </Page.Resources>
   <ScrollViewer VerticalScrollBarVisibility="Auto"
                 VerticalScrollMode="Auto">
@@ -65,6 +71,9 @@
       <TextBlock x:Uid="MainPage/AboutTextBlock"
                  Text="About"
                  Style="{ThemeResource SectionTextBlockStyle}"/>
+      <TextBlock x:Name="tbVersion"
+                 Text="About"
+                 Style="{ThemeResource ContentTextBlockStyle}"/>
       <Button x:Name="btnRating"
               x:Uid="MainPage/RatingButton"
               Click="btnRating_Click"

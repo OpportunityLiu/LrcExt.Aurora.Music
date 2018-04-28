@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -29,6 +30,8 @@ namespace Opportunity.LrcExt.Aurora.Music
         public MainPage()
         {
             this.InitializeComponent();
+            var version = Package.Current.Id.Version.ToVersion();
+            this.tbVersion.Text = $"{Strings.Resources.App.DisplayName} {version}";
             Dispatcher.Begin(async () =>
             {
                 var r = await Launcher.QueryUriSupportAsync(AuroraSettings, LaunchQuerySupportType.Uri);

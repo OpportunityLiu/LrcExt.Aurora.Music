@@ -102,7 +102,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                         var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
                         if (data.code != 200 || data?.lrc?.lyric is null)
                             return "";
-                        var lyric = Lyrics.Parse<Line>(data.lrc.lyric);
+                        var lyric = Lyrics.Parse<Line>(data.lrc.lyric).Lyrics;
                         if (lyric.Lines.Count == 0)
                         {
                             return null;

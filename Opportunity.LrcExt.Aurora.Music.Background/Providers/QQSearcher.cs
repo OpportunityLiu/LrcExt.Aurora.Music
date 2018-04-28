@@ -82,7 +82,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                             //"[00:00:00]此歌曲为没有填词的纯音乐，请您欣赏"
                             data.lyric == "WzAwOjAwOjAwXeatpOatjOabsuS4uuayoeacieWhq+ivjeeahOe6r+mfs+S5kO+8jOivt+aCqOaso+i1jw==")
                             return "";
-                        var lyric = Lyrics.Parse<Line>(Encoding.UTF8.GetString(Convert.FromBase64String(data.lyric)));
+                        var lyric = Lyrics.Parse<Line>(Encoding.UTF8.GetString(Convert.FromBase64String(data.lyric))).Lyrics;
                         if (lyric.Lines.Count == 0)
                         {
                             return null;
