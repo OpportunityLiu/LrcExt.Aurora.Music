@@ -72,7 +72,7 @@
                  Text="About"
                  Style="{ThemeResource SectionTextBlockStyle}"/>
       <TextBlock x:Name="tbVersion"
-                 Text="About"
+                 Text="AppName 1.1.0.0"
                  Style="{ThemeResource ContentTextBlockStyle}"/>
       <Button x:Name="btnRating"
               x:Uid="MainPage/RatingButton"
