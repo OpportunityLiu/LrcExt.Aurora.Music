@@ -14,9 +14,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             get
             {
                 if (ApplicationData.Current.LocalSettings.Values.TryGetValue(nameof(UseToast), out var r))
-                {
                     return (bool)r;
-                }
                 return true;
             }
             set

@@ -353,11 +353,11 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
                 int distance(string value, string cbase)
                 {
-                    var vc = value.Contains(cbase, StringComparison.OrdinalIgnoreCase);
-                    var cc = cbase.Contains(value, StringComparison.OrdinalIgnoreCase);
+                    var vc = value.Contains(cbase, StringComparison.CurrentCultureIgnoreCase);
+                    var cc = cbase.Contains(value, StringComparison.CurrentCultureIgnoreCase);
                     if (vc && cc)
                         return 0;
-                    var ed = StringHelper.LevenshteinDistance(value, cbase);
+                    var ed = value.Distance(cbase, StringComparison.CurrentCultureIgnoreCase);
 
                     // give same base score for all irrelevant strings
                     if (ed == value.Length || ed == cbase.Length)
