@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Notifications;
