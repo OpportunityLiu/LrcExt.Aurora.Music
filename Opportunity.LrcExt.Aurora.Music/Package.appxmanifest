@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap uap3 mp">
-  <Identity Name="2289Opportunity.AuroraMusicOnlineLyricsExtension" Publisher="CN=22AA5D8B-590F-4C7F-807B-5166B66DDBE0" Version="1.1.4.0" />
+  <Identity Name="2289Opportunity.AuroraMusicOnlineLyricsExtension" Publisher="CN=22AA5D8B-590F-4C7F-807B-5166B66DDBE0" Version="1.1.5.0" />
   <mp:PhoneIdentity PhoneProductId="18077909-3894-40a7-b602-1737aa66a768" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ms-resource:App/DisplayName</DisplayName>
@@ -22,6 +22,15 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
+        <uap3:Extension Category="windows.appExtension">
+          <uap3:AppExtension Name="Aurora.Music.Extensions" Id="Opportunity.LrcExt.Aurora.Music" PublicFolder="Public" DisplayName="ms-resource:Extension/DisplayName" Description="ms-resource:Extension/Description">
+            <uap3:Properties>
+              <Service>Opportunity.LrcExt.Aurora.Music</Service>
+              <Category>Lyric</Category>
+              <LaunchUri>as-music-ole:</LaunchUri>
+            </uap3:Properties>
+          </uap3:AppExtension>
+        </uap3:Extension>
         <uap:Extension Category="windows.protocol">
           <uap:Protocol Name="as-music-ole" DesiredView="useMinimum" ReturnResults="none">
             <uap:DisplayName>ms-resource:App/DisplayName</uap:DisplayName>
@@ -35,15 +44,6 @@
         <uap:Extension Category="windows.appService" EntryPoint="Opportunity.LrcExt.Aurora.Music.Background.ServiceBackgroundTask">
           <uap:AppService Name="Opportunity.LrcExt.Aurora.Music" />
         </uap:Extension>
-        <uap3:Extension Category="windows.appExtension">
-          <uap3:AppExtension Name="Aurora.Music.Extensions" Id="Opportunity.LrcExt.Aurora.Music" PublicFolder="Public" DisplayName="ms-resource:Extension/DisplayName" Description="ms-resource:Extension/Description">
-            <uap3:Properties>
-              <Service>Opportunity.LrcExt.Aurora.Music</Service>
-              <Category>Lyric</Category>
-              <LaunchUri>as-music-ole:</LaunchUri>
-            </uap3:Properties>
-          </uap3:AppExtension>
-        </uap3:Extension>
       </Extensions>
     </Application>
   </Applications>
