@@ -11,7 +11,7 @@
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IResources : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IApp App { get; }
@@ -23,7 +23,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IApp : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -39,7 +39,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IExtension : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -55,7 +55,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IMainPage : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IDescriptionTextBlock DescriptionTextBlock { get; }
@@ -71,7 +71,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IDescriptionTextBlock : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -83,7 +83,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IInstallButton : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -95,7 +95,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface ILaunchButton : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -107,7 +107,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IToastToggleButton : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -119,7 +119,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface ISettingsTextBlock : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -131,7 +131,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IAboutTextBlock : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -143,7 +143,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IGithubButton : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -155,7 +155,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IRatingButton : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -167,7 +167,7 @@ namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage
 
 namespace Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources
 {
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal interface IToast : global::Opportunity.ResourceGenerator.IResourceProvider
     {
         /// <summary>
@@ -281,35 +281,41 @@ namespace Opportunity.LrcExt.Aurora.Music
 {
     [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
     internal static class Strings
     {
+        private static T InitializeResourceClass__JtRxdqVu<T>(ref T value) where T : class, new()
+        {
+            if (value == null)
+                value = new T();
+            return value;
+        }
 
         [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-        private static global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources Resources__AxGPVSiI;
+        private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL Resources__PD2AZYjw;
         internal static global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources Resources 
-            => global::System.Threading.LazyInitializer.EnsureInitialized(ref Resources__AxGPVSiI, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO());
+            => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref Resources__PD2AZYjw);
 
         [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-        private sealed class Resources__XqF5j2nO : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+        private sealed class Resources___l3RxAAL : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources
         {
-            public Resources__XqF5j2nO() : base("ms-resource:///Resources/") { }
+            public Resources___l3RxAAL() : base("ms-resource:///Resources/") { }
 
 
             [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IApp App__tq_omhP8;
+            private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.App__7xxKJrmb App__DDS_BP1G;
             [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/App")]
             global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IApp global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources.App 
-                => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.App__tq_omhP8, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.App__A5RnuBNR());
+                => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref App__DDS_BP1G);
 
             [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-            private sealed class App__A5RnuBNR : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IApp
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+            private sealed class App__7xxKJrmb : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IApp
             {
-                public App__A5RnuBNR() : base("ms-resource:///Resources/App/") { }
+                public App__7xxKJrmb() : base("ms-resource:///Resources/App/") { }
 
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/App/DisplayName")]
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IApp.DisplayName
@@ -320,17 +326,17 @@ namespace Opportunity.LrcExt.Aurora.Music
             }
 
             [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IExtension Extension__LzAnVtQc;
+            private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.Extension__7Rg_vy_T Extension__uuMHqErj;
             [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Extension")]
             global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IExtension global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources.Extension 
-                => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.Extension__LzAnVtQc, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.Extension__ufF4HcCt());
+                => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref Extension__uuMHqErj);
 
             [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-            private sealed class Extension__ufF4HcCt : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IExtension
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+            private sealed class Extension__7Rg_vy_T : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IExtension
             {
-                public Extension__ufF4HcCt() : base("ms-resource:///Resources/Extension/") { }
+                public Extension__7Rg_vy_T() : base("ms-resource:///Resources/Extension/") { }
 
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Extension/DisplayName")]
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IExtension.DisplayName
@@ -341,30 +347,30 @@ namespace Opportunity.LrcExt.Aurora.Music
             }
 
             [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage MainPage__RX3toVXh;
+            private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7 MainPage__JFnMXD4s;
             [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage")]
             global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources.MainPage 
-                => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.MainPage__RX3toVXh, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt());
+                => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref MainPage__JFnMXD4s);
 
             [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-            private sealed class MainPage__urKB5PYt : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+            private sealed class MainPage__RrMUElT7 : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage
             {
-                public MainPage__urKB5PYt() : base("ms-resource:///Resources/MainPage/") { }
+                public MainPage__RrMUElT7() : base("ms-resource:///Resources/MainPage/") { }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IDescriptionTextBlock DescriptionTextBlock__JsONfdV4;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.DescriptionTextBlock__o_8a1Wpw DescriptionTextBlock__r_Zgitfn;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/DescriptionTextBlock")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IDescriptionTextBlock global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.DescriptionTextBlock 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.DescriptionTextBlock__JsONfdV4, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.DescriptionTextBlock__7qO0ZFzf());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref DescriptionTextBlock__r_Zgitfn);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class DescriptionTextBlock__7qO0ZFzf : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IDescriptionTextBlock
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class DescriptionTextBlock__o_8a1Wpw : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IDescriptionTextBlock
                 {
-                    public DescriptionTextBlock__7qO0ZFzf() : base("ms-resource:///Resources/MainPage/DescriptionTextBlock/") { }
+                    public DescriptionTextBlock__o_8a1Wpw() : base("ms-resource:///Resources/MainPage/DescriptionTextBlock/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/DescriptionTextBlock/Text")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IDescriptionTextBlock.Text
@@ -372,17 +378,17 @@ namespace Opportunity.LrcExt.Aurora.Music
                 }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IInstallButton InstallButton__YKy_S_1g;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.InstallButton__zH0O7aqk InstallButton__6EfSZuAG;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/InstallButton")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IInstallButton global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.InstallButton 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.InstallButton__YKy_S_1g, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.InstallButton__VuZQ4ib4());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref InstallButton__6EfSZuAG);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class InstallButton__VuZQ4ib4 : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IInstallButton
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class InstallButton__zH0O7aqk : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IInstallButton
                 {
-                    public InstallButton__VuZQ4ib4() : base("ms-resource:///Resources/MainPage/InstallButton/") { }
+                    public InstallButton__zH0O7aqk() : base("ms-resource:///Resources/MainPage/InstallButton/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/InstallButton/Content")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IInstallButton.Content
@@ -390,17 +396,17 @@ namespace Opportunity.LrcExt.Aurora.Music
                 }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ILaunchButton LaunchButton__Dxibly4c;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.LaunchButton__h_nfw9_j LaunchButton__epDZExsv;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/LaunchButton")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ILaunchButton global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.LaunchButton 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.LaunchButton__Dxibly4c, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.LaunchButton__0NG5ulWW());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref LaunchButton__epDZExsv);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class LaunchButton__0NG5ulWW : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ILaunchButton
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class LaunchButton__h_nfw9_j : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ILaunchButton
                 {
-                    public LaunchButton__0NG5ulWW() : base("ms-resource:///Resources/MainPage/LaunchButton/") { }
+                    public LaunchButton__h_nfw9_j() : base("ms-resource:///Resources/MainPage/LaunchButton/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/LaunchButton/Content")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ILaunchButton.Content
@@ -408,17 +414,17 @@ namespace Opportunity.LrcExt.Aurora.Music
                 }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IToastToggleButton ToastToggleButton__jj3cCI4Q;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.ToastToggleButton__eOR5l_lT ToastToggleButton__g7vcLEbX;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/ToastToggleButton")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IToastToggleButton global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.ToastToggleButton 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.ToastToggleButton__jj3cCI4Q, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.ToastToggleButton___MvTRzAQ());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref ToastToggleButton__g7vcLEbX);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class ToastToggleButton___MvTRzAQ : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IToastToggleButton
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class ToastToggleButton__eOR5l_lT : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IToastToggleButton
                 {
-                    public ToastToggleButton___MvTRzAQ() : base("ms-resource:///Resources/MainPage/ToastToggleButton/") { }
+                    public ToastToggleButton__eOR5l_lT() : base("ms-resource:///Resources/MainPage/ToastToggleButton/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/ToastToggleButton/Header")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IToastToggleButton.Header
@@ -426,17 +432,17 @@ namespace Opportunity.LrcExt.Aurora.Music
                 }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ISettingsTextBlock SettingsTextBlock__IaOmU5SL;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.SettingsTextBlock__7TeuJ3T2 SettingsTextBlock__WT0fFE5w;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/SettingsTextBlock")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ISettingsTextBlock global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.SettingsTextBlock 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.SettingsTextBlock__IaOmU5SL, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.SettingsTextBlock__3WJX9ECo());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref SettingsTextBlock__WT0fFE5w);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class SettingsTextBlock__3WJX9ECo : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ISettingsTextBlock
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class SettingsTextBlock__7TeuJ3T2 : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ISettingsTextBlock
                 {
-                    public SettingsTextBlock__3WJX9ECo() : base("ms-resource:///Resources/MainPage/SettingsTextBlock/") { }
+                    public SettingsTextBlock__7TeuJ3T2() : base("ms-resource:///Resources/MainPage/SettingsTextBlock/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/SettingsTextBlock/Text")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.ISettingsTextBlock.Text
@@ -444,17 +450,17 @@ namespace Opportunity.LrcExt.Aurora.Music
                 }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IAboutTextBlock AboutTextBlock__3L63M_pb;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.AboutTextBlock__kOsWvBBG AboutTextBlock__Dblh3nTG;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/AboutTextBlock")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IAboutTextBlock global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.AboutTextBlock 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.AboutTextBlock__3L63M_pb, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.AboutTextBlock__Jmtu9229());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref AboutTextBlock__Dblh3nTG);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class AboutTextBlock__Jmtu9229 : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IAboutTextBlock
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class AboutTextBlock__kOsWvBBG : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IAboutTextBlock
                 {
-                    public AboutTextBlock__Jmtu9229() : base("ms-resource:///Resources/MainPage/AboutTextBlock/") { }
+                    public AboutTextBlock__kOsWvBBG() : base("ms-resource:///Resources/MainPage/AboutTextBlock/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/AboutTextBlock/Text")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IAboutTextBlock.Text
@@ -462,17 +468,17 @@ namespace Opportunity.LrcExt.Aurora.Music
                 }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IGithubButton GithubButton__hMdCqd3z;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.GithubButton__K1FOfuMk GithubButton__KVqzCNan;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/GithubButton")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IGithubButton global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.GithubButton 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.GithubButton__hMdCqd3z, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.GithubButton__JRl8rry_());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref GithubButton__KVqzCNan);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class GithubButton__JRl8rry_ : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IGithubButton
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class GithubButton__K1FOfuMk : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IGithubButton
                 {
-                    public GithubButton__JRl8rry_() : base("ms-resource:///Resources/MainPage/GithubButton/") { }
+                    public GithubButton__K1FOfuMk() : base("ms-resource:///Resources/MainPage/GithubButton/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/GithubButton/Content")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IGithubButton.Content
@@ -480,17 +486,17 @@ namespace Opportunity.LrcExt.Aurora.Music
                 }
 
                 [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IRatingButton RatingButton__dqQ3SCHE;
+                private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.MainPage__RrMUElT7.RatingButton__9VIc47ne RatingButton__EGSWCQYN;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/RatingButton")]
                 global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IRatingButton global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IMainPage.RatingButton 
-                    => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.RatingButton__dqQ3SCHE, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.MainPage__urKB5PYt.RatingButton__PhrY83aL());
+                    => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref RatingButton__EGSWCQYN);
 
                 [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
                 [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-                private sealed class RatingButton__PhrY83aL : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IRatingButton
+                [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+                private sealed class RatingButton__9VIc47ne : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IRatingButton
                 {
-                    public RatingButton__PhrY83aL() : base("ms-resource:///Resources/MainPage/RatingButton/") { }
+                    public RatingButton__9VIc47ne() : base("ms-resource:///Resources/MainPage/RatingButton/") { }
 
                     [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/MainPage/RatingButton/Content")]
                     string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.MainPage.IRatingButton.Content
@@ -500,180 +506,180 @@ namespace Opportunity.LrcExt.Aurora.Music
             }
 
             [global::System.Diagnostics.DebuggerBrowsableAttribute(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast Toast__Wap3_88n;
+            private static global::Opportunity.LrcExt.Aurora.Music.Strings.Resources___l3RxAAL.Toast__PcaqlR6N Toast__dg7C6Psj;
             [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast")]
             global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.IResources.Toast 
-                => global::System.Threading.LazyInitializer.EnsureInitialized(ref this.Toast__Wap3_88n, () => new global::Opportunity.LrcExt.Aurora.Music.Strings.Resources__XqF5j2nO.Toast__opfQHizQ());
+                => global::Opportunity.LrcExt.Aurora.Music.Strings.InitializeResourceClass__JtRxdqVu(ref Toast__dg7C6Psj);
 
             [global::System.Diagnostics.DebuggerTypeProxyAttribute(typeof(global::Opportunity.ResourceGenerator.DebuggerDisplay))]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.8.0")]
-            private sealed class Toast__opfQHizQ : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Opportunity.ResourceGenerator", "1.3.10.0")]
+            private sealed class Toast__PcaqlR6N : global::Opportunity.ResourceGenerator.ResourceProviderBase, global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast
             {
-                public Toast__opfQHizQ() : base("ms-resource:///Resources/Toast/") { }
+                public Toast__PcaqlR6N() : base("ms-resource:///Resources/Toast/") { }
 
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/Title")]
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.Title
                     => global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/Title");
-                global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine1__LHLm58_M;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine1__qNpZ_urz;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$ContentLine1")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine1()
                 {
-                    if (ContentLine1__LHLm58_M == null)
-                        ContentLine1__LHLm58_M = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine1"));
-                    return ContentLine1__LHLm58_M;
+                    if (ContentLine1__qNpZ_urz == null)
+                        ContentLine1__qNpZ_urz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine1"));
+                    return ContentLine1__qNpZ_urz;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine1(object title)
                 {
-                    if (ContentLine1__LHLm58_M == null)
-                        ContentLine1__LHLm58_M = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine1"));
-                    return string.Format(ContentLine1__LHLm58_M.FormatString, title);
+                    if (ContentLine1__qNpZ_urz == null)
+                        ContentLine1__qNpZ_urz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine1"));
+                    return string.Format(ContentLine1__qNpZ_urz.FormatString, title);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine1(global::System.IFormatProvider provider, object title)
                 {
-                    if (ContentLine1__LHLm58_M == null)
-                        ContentLine1__LHLm58_M = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine1"));
-                    return string.Format(provider, ContentLine1__LHLm58_M.FormatString, title);
+                    if (ContentLine1__qNpZ_urz == null)
+                        ContentLine1__qNpZ_urz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine1"));
+                    return string.Format(provider, ContentLine1__qNpZ_urz.FormatString, title);
                 }
-                global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine2__SHyOerhS;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine2__vIgUbse9;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$ContentLine2")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2()
                 {
-                    if (ContentLine2__SHyOerhS == null)
-                        ContentLine2__SHyOerhS = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2"));
-                    return ContentLine2__SHyOerhS;
+                    if (ContentLine2__vIgUbse9 == null)
+                        ContentLine2__vIgUbse9 = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2"));
+                    return ContentLine2__vIgUbse9;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2(object artist, object album)
                 {
-                    if (ContentLine2__SHyOerhS == null)
-                        ContentLine2__SHyOerhS = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2"));
-                    return string.Format(ContentLine2__SHyOerhS.FormatString, album, artist);
+                    if (ContentLine2__vIgUbse9 == null)
+                        ContentLine2__vIgUbse9 = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2"));
+                    return string.Format(ContentLine2__vIgUbse9.FormatString, album, artist);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2(global::System.IFormatProvider provider, object artist, object album)
                 {
-                    if (ContentLine2__SHyOerhS == null)
-                        ContentLine2__SHyOerhS = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2"));
-                    return string.Format(provider, ContentLine2__SHyOerhS.FormatString, album, artist);
+                    if (ContentLine2__vIgUbse9 == null)
+                        ContentLine2__vIgUbse9 = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2"));
+                    return string.Format(provider, ContentLine2__vIgUbse9.FormatString, album, artist);
                 }
-                global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine2NoArtist__5elIK71G;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine2NoArtist__KSr_g84Q;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$ContentLine2NoArtist")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2NoArtist()
                 {
-                    if (ContentLine2NoArtist__5elIK71G == null)
-                        ContentLine2NoArtist__5elIK71G = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoArtist"));
-                    return ContentLine2NoArtist__5elIK71G;
+                    if (ContentLine2NoArtist__KSr_g84Q == null)
+                        ContentLine2NoArtist__KSr_g84Q = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoArtist"));
+                    return ContentLine2NoArtist__KSr_g84Q;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2NoArtist(object album)
                 {
-                    if (ContentLine2NoArtist__5elIK71G == null)
-                        ContentLine2NoArtist__5elIK71G = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoArtist"));
-                    return string.Format(ContentLine2NoArtist__5elIK71G.FormatString, album);
+                    if (ContentLine2NoArtist__KSr_g84Q == null)
+                        ContentLine2NoArtist__KSr_g84Q = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoArtist"));
+                    return string.Format(ContentLine2NoArtist__KSr_g84Q.FormatString, album);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2NoArtist(global::System.IFormatProvider provider, object album)
                 {
-                    if (ContentLine2NoArtist__5elIK71G == null)
-                        ContentLine2NoArtist__5elIK71G = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoArtist"));
-                    return string.Format(provider, ContentLine2NoArtist__5elIK71G.FormatString, album);
+                    if (ContentLine2NoArtist__KSr_g84Q == null)
+                        ContentLine2NoArtist__KSr_g84Q = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoArtist"));
+                    return string.Format(provider, ContentLine2NoArtist__KSr_g84Q.FormatString, album);
                 }
-                global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine2NoAlbum__JN33twwl;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString ContentLine2NoAlbum__LyJKQEEd;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$ContentLine2NoAlbum")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2NoAlbum()
                 {
-                    if (ContentLine2NoAlbum__JN33twwl == null)
-                        ContentLine2NoAlbum__JN33twwl = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoAlbum"));
-                    return ContentLine2NoAlbum__JN33twwl;
+                    if (ContentLine2NoAlbum__LyJKQEEd == null)
+                        ContentLine2NoAlbum__LyJKQEEd = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoAlbum"));
+                    return ContentLine2NoAlbum__LyJKQEEd;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2NoAlbum(object artist)
                 {
-                    if (ContentLine2NoAlbum__JN33twwl == null)
-                        ContentLine2NoAlbum__JN33twwl = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoAlbum"));
-                    return string.Format(ContentLine2NoAlbum__JN33twwl.FormatString, artist);
+                    if (ContentLine2NoAlbum__LyJKQEEd == null)
+                        ContentLine2NoAlbum__LyJKQEEd = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoAlbum"));
+                    return string.Format(ContentLine2NoAlbum__LyJKQEEd.FormatString, artist);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.ContentLine2NoAlbum(global::System.IFormatProvider provider, object artist)
                 {
-                    if (ContentLine2NoAlbum__JN33twwl == null)
-                        ContentLine2NoAlbum__JN33twwl = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoAlbum"));
-                    return string.Format(provider, ContentLine2NoAlbum__JN33twwl.FormatString, artist);
+                    if (ContentLine2NoAlbum__LyJKQEEd == null)
+                        ContentLine2NoAlbum__LyJKQEEd = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$ContentLine2NoAlbum"));
+                    return string.Format(provider, ContentLine2NoAlbum__LyJKQEEd.FormatString, artist);
                 }
-                global::Opportunity.ResourceGenerator.FormattableResourceString Selection__72WbclAz;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString Selection__epQ8JpHI;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$Selection")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.Selection()
                 {
-                    if (Selection__72WbclAz == null)
-                        Selection__72WbclAz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$Selection"));
-                    return Selection__72WbclAz;
+                    if (Selection__epQ8JpHI == null)
+                        Selection__epQ8JpHI = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$Selection"));
+                    return Selection__epQ8JpHI;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.Selection(object title, object artist, object album)
                 {
-                    if (Selection__72WbclAz == null)
-                        Selection__72WbclAz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$Selection"));
-                    return string.Format(Selection__72WbclAz.FormatString, album, artist, title);
+                    if (Selection__epQ8JpHI == null)
+                        Selection__epQ8JpHI = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$Selection"));
+                    return string.Format(Selection__epQ8JpHI.FormatString, album, artist, title);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.Selection(global::System.IFormatProvider provider, object title, object artist, object album)
                 {
-                    if (Selection__72WbclAz == null)
-                        Selection__72WbclAz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$Selection"));
-                    return string.Format(provider, Selection__72WbclAz.FormatString, album, artist, title);
+                    if (Selection__epQ8JpHI == null)
+                        Selection__epQ8JpHI = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$Selection"));
+                    return string.Format(provider, Selection__epQ8JpHI.FormatString, album, artist, title);
                 }
-                global::Opportunity.ResourceGenerator.FormattableResourceString SelectionNoArtist__e0NLsMYD;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString SelectionNoArtist__5QxW_Tre;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$SelectionNoArtist")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionNoArtist()
                 {
-                    if (SelectionNoArtist__e0NLsMYD == null)
-                        SelectionNoArtist__e0NLsMYD = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoArtist"));
-                    return SelectionNoArtist__e0NLsMYD;
+                    if (SelectionNoArtist__5QxW_Tre == null)
+                        SelectionNoArtist__5QxW_Tre = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoArtist"));
+                    return SelectionNoArtist__5QxW_Tre;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionNoArtist(object title, object album)
                 {
-                    if (SelectionNoArtist__e0NLsMYD == null)
-                        SelectionNoArtist__e0NLsMYD = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoArtist"));
-                    return string.Format(SelectionNoArtist__e0NLsMYD.FormatString, album, title);
+                    if (SelectionNoArtist__5QxW_Tre == null)
+                        SelectionNoArtist__5QxW_Tre = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoArtist"));
+                    return string.Format(SelectionNoArtist__5QxW_Tre.FormatString, album, title);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionNoArtist(global::System.IFormatProvider provider, object title, object album)
                 {
-                    if (SelectionNoArtist__e0NLsMYD == null)
-                        SelectionNoArtist__e0NLsMYD = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoArtist"));
-                    return string.Format(provider, SelectionNoArtist__e0NLsMYD.FormatString, album, title);
+                    if (SelectionNoArtist__5QxW_Tre == null)
+                        SelectionNoArtist__5QxW_Tre = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoArtist"));
+                    return string.Format(provider, SelectionNoArtist__5QxW_Tre.FormatString, album, title);
                 }
-                global::Opportunity.ResourceGenerator.FormattableResourceString SelectionNoAlbum__pY_UagCk;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString SelectionNoAlbum__hBZ6o01_;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$SelectionNoAlbum")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionNoAlbum()
                 {
-                    if (SelectionNoAlbum__pY_UagCk == null)
-                        SelectionNoAlbum__pY_UagCk = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoAlbum"));
-                    return SelectionNoAlbum__pY_UagCk;
+                    if (SelectionNoAlbum__hBZ6o01_ == null)
+                        SelectionNoAlbum__hBZ6o01_ = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoAlbum"));
+                    return SelectionNoAlbum__hBZ6o01_;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionNoAlbum(object title, object artist)
                 {
-                    if (SelectionNoAlbum__pY_UagCk == null)
-                        SelectionNoAlbum__pY_UagCk = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoAlbum"));
-                    return string.Format(SelectionNoAlbum__pY_UagCk.FormatString, artist, title);
+                    if (SelectionNoAlbum__hBZ6o01_ == null)
+                        SelectionNoAlbum__hBZ6o01_ = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoAlbum"));
+                    return string.Format(SelectionNoAlbum__hBZ6o01_.FormatString, artist, title);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionNoAlbum(global::System.IFormatProvider provider, object title, object artist)
                 {
-                    if (SelectionNoAlbum__pY_UagCk == null)
-                        SelectionNoAlbum__pY_UagCk = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoAlbum"));
-                    return string.Format(provider, SelectionNoAlbum__pY_UagCk.FormatString, artist, title);
+                    if (SelectionNoAlbum__hBZ6o01_ == null)
+                        SelectionNoAlbum__hBZ6o01_ = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionNoAlbum"));
+                    return string.Format(provider, SelectionNoAlbum__hBZ6o01_.FormatString, artist, title);
                 }
-                global::Opportunity.ResourceGenerator.FormattableResourceString SelectionTitleOnly__NifefTlC;
+                static global::Opportunity.ResourceGenerator.FormattableResourceString SelectionTitleOnly___M7_7Wzz;
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/$SelectionTitleOnly")]
                 global::Opportunity.ResourceGenerator.FormattableResourceString global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionTitleOnly()
                 {
-                    if (SelectionTitleOnly__NifefTlC == null)
-                        SelectionTitleOnly__NifefTlC = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionTitleOnly"));
-                    return SelectionTitleOnly__NifefTlC;
+                    if (SelectionTitleOnly___M7_7Wzz == null)
+                        SelectionTitleOnly___M7_7Wzz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionTitleOnly"));
+                    return SelectionTitleOnly___M7_7Wzz;
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionTitleOnly(object title)
                 {
-                    if (SelectionTitleOnly__NifefTlC == null)
-                        SelectionTitleOnly__NifefTlC = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionTitleOnly"));
-                    return string.Format(SelectionTitleOnly__NifefTlC.FormatString, title);
+                    if (SelectionTitleOnly___M7_7Wzz == null)
+                        SelectionTitleOnly___M7_7Wzz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionTitleOnly"));
+                    return string.Format(SelectionTitleOnly___M7_7Wzz.FormatString, title);
                 }
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.SelectionTitleOnly(global::System.IFormatProvider provider, object title)
                 {
-                    if (SelectionTitleOnly__NifefTlC == null)
-                        SelectionTitleOnly__NifefTlC = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionTitleOnly"));
-                    return string.Format(provider, SelectionTitleOnly__NifefTlC.FormatString, title);
+                    if (SelectionTitleOnly___M7_7Wzz == null)
+                        SelectionTitleOnly___M7_7Wzz = new global::Opportunity.ResourceGenerator.FormattableResourceString(global::Opportunity.Helpers.Universal.LocalizedStrings.GetValue("ms-resource:///Resources/Toast/$SelectionTitleOnly"));
+                    return string.Format(provider, SelectionTitleOnly___M7_7Wzz.FormatString, title);
                 }
                 [global::Opportunity.ResourceGenerator.ResourcePathAttribute("ms-resource:///Resources/Toast/Select")]
                 string global::Opportunity.LrcExt.Aurora.Music.ResourceInfo.Resources.IToast.Select

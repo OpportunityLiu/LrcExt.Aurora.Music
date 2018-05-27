@@ -137,15 +137,31 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
             public override IAsyncOperation<string> FetchLryics()
             {
-                var uri = new Uri(string.Format(DownloadPath, this.lrcId.ToString(), getQianQianCode(this.lrcId, Title, Artist)));
-                return httpClient.GetStringAsync(uri).AsAsyncOperation();
+                return AsyncInfo.Run(async token =>
+                {
+                    var uri = new Uri(string.Format(DownloadPath, this.lrcId.ToString(), getQianQianCode(this.lrcId, Title, Artist)));
+                    var result = await httpClient.GetStringAsync(uri);
+                    if (result.StartsWith("<?xml"))
+                        result = await httpClient.GetStringAsync(uri);
+                    if (result.StartsWith("<?xml"))
+                        return null;
+                    return result;
+                });
+
             }
         }
 
         //歌词Id获取地址
         private static readonly string SearchPath = "http://lrcct2.ttplayer.com/dll/lyricsvr.dll?sh?Artist={0}&Title={1}&Flags=0";
 
-        private static HttpClient httpClient = new HttpClient();
+        private static readonly HttpClient httpClient = createClient();
+        private static HttpClient createClient()
+        {
+            var r = new HttpClient();
+            r.DefaultRequestHeaders.Accept.ParseAdd("text/html, application/xhtml+xml, application/xml; q=0.9, */*; q=0.8");
+            r.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134");
+            return r;
+        }
 
         //把字符串转换为十六进制
         private static string asHexString(string str, Encoding encoding)
