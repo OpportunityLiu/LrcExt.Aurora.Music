@@ -5,11 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Windows.Foundation;
 using Windows.Web.Http;
 
 // 参考
@@ -20,11 +18,11 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     internal sealed class QQSearcher : ISearcher
     {
-        private static HttpClient httpClient = new HttpClient
+        private static HttpClient httpClient = new()
         {
             DefaultRequestHeaders =
             {
-                Referer = new Uri("https://y.qq.com/"),
+                Referer = new ("https://y.qq.com/"),
             }
         };
 
@@ -129,8 +127,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         [DataContract]
         public class Song
         {
-            [DataMember]
-            public string lyric { get; set; }
             [DataMember]
             public Singer[] singer { get; set; }
             [DataMember]

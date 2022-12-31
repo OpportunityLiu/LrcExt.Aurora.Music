@@ -20,13 +20,13 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         private static HttpClient _CreateClient()
         {
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Referer = new Uri("https://music.163.com/");
+            client.DefaultRequestHeaders.Referer = new("https://music.163.com/");
             client.DefaultRequestHeaders.Add("Origin", "https://music.163.com");
             client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54");
             return client;
         }
 
-        private static readonly Uri SEARCH_URI = new Uri("https://music.163.com/api/search/pc");
+        private static readonly Uri SEARCH_URI = new("https://music.163.com/api/search/pc");
 
         private static readonly DataContractJsonSerializer searchJsonSerializer = new DataContractJsonSerializer(typeof(SearchResult));
 
@@ -87,7 +87,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
             protected override async Task<string> FetchDataAsync()
             {
-                var uri = new Uri($"http://music.163.com/api/song/lyric?os=pc&id={id.ToString()}&lv=-1");
+                var uri = new Uri($"http://music.163.com/api/song/lyric?os=pc&id={id}&lv=-1");
                 var buf = await httpClient.GetBufferAsync(uri);
                 using var stream = buf.AsStream();
                 var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
