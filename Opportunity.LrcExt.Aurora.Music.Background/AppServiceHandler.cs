@@ -5,18 +5,15 @@ using Windows.Foundation.Collections;
 using Microsoft.Services.Store.Engagement;
 using Windows.UI.Notifications;
 using Microsoft.Toolkit.Uwp.Notifications;
-using Windows.Storage;
 using System.Threading;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Windows.Foundation;
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     internal sealed class AppServiceHandler
     {
-        private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim semaphore = new(1, 1);
         private static readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
 
         private class Cache
@@ -33,23 +30,23 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         private AppServiceConnection connection;
         private AppServiceRequest request;
 
-        private List<IGrouping<(string Title, string Artist, string Album), ILrcInfo>> lrcCandidates;
+        private List<IGrouping<(string Title, string Artist, string Album), LrcInfo>> lrcCandidates;
 
         public AppServiceHandler(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
         {
-            this.connection = sender;
-            this.deferral = args.GetDeferral();
-            this.request = args.Request;
-            start();
+            connection = sender;
+            deferral = args.GetDeferral();
+            request = args.Request;
+            _Start();
         }
 
         private string title, artist, album;
 
-        private async void start()
+        private async void _Start()
         {
             try
             {
-                var message = this.request.Message;
+                var message = request.Message;
                 if (!message.TryGetValue("q", out var query) || query.ToString() != "lyric")
                 {
                     sendFault("Wrong Input");
@@ -59,40 +56,36 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 message.TryGetValue("title", out var t);
                 message.TryGetValue("artist", out var a);
                 message.TryGetValue("album", out var al);
-                this.title = (t ?? "").ToString();
-                this.artist = (a ?? "").ToString();
-                this.album = (al ?? "").ToString();
+                title = (t ?? "").ToString();
+                artist = (a ?? "").ToString();
+                album = (al ?? "").ToString();
 
                 await semaphore.WaitAsync();
 
                 var lrcCache = cache;
                 if (lrcCache != null &&
-                    this.title == lrcCache.Title &&
-                    this.artist == lrcCache.Artist &&
-                    this.album == lrcCache.Album)
+                    title == lrcCache.Title &&
+                    artist == lrcCache.Artist &&
+                    album == lrcCache.Album)
                 {
                     sendCached(lrcCache.Lrc);
                     return;
                 }
 
-                var searchTasks = Searchers.All.Select(s => s.FetchLrcListAsync(this.artist, this.title).AsTask()).ToArray();
-                try
-                {
-                    await Task.WhenAll(searchTasks);
-                }
-                catch { }
-                var candidates = new List<ILrcInfo>();
-                foreach (var task in searchTasks)
+                var candidates = new List<LrcInfo>();
+                foreach (var task in Searchers.All.Select(s => s.FetchLrcListAsync(artist, title)).ToArray())
                 {
                     try
                     {
-                        candidates.AddRange(task.Result);
+                        var result = await task;
+                        if (result is null) continue;
+                        candidates.AddRange(result);
                     }
                     catch { }
                 }
-                this.lrcCandidates = candidates.GroupBy(i => (i.Title, i.Artist, i.Album)).ToList();
+                lrcCandidates = candidates.GroupBy(i => (i.Title, i.Artist, i.Album)).ToList();
                 sortResult();
-                if (this.lrcCandidates.Count > 1 && Settings.UseToast)
+                if (lrcCandidates.Count > 1 && Settings.UseToast)
                 {
                     createToast();
                     return;
@@ -110,29 +103,29 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             var bg = new ToastBindingGeneric();
             bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.Title });
-            bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine1(this.title) });
-            var arNull = string.IsNullOrEmpty(this.artist);
-            var alNull = string.IsNullOrEmpty(this.album);
+            bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine1(title) });
+            var arNull = string.IsNullOrEmpty(artist);
+            var alNull = string.IsNullOrEmpty(album);
             if (arNull && alNull)
             {
                 // No Line 2
             }
             if (arNull)
             {
-                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoArtist(this.album) });
+                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoArtist(album) });
             }
             else if (alNull)
             {
-                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoAlbum(this.artist) });
+                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2NoAlbum(artist) });
             }
             else
             {
-                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2(this.artist, this.album) });
+                bg.Children.Add(new AdaptiveText { Text = Strings.Resources.Toast.ContentLine2(artist, album) });
             }
 
             var se = new ToastSelectionBox("lrc") { DefaultSelectionBoxItemId = "0" };
             var i = 0;
-            foreach (var item in this.lrcCandidates.Take(5))
+            foreach (var item in lrcCandidates.Take(5))
             {
                 var content = "";
                 var sArNull = string.IsNullOrEmpty(item.Key.Artist);
@@ -169,7 +162,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                     Inputs = { se },
                     Buttons =
                     {
-                        new ToastButton( Strings.Resources.Toast.Select , this.GetHashCode().ToString()+ "&sel")
+                        new ToastButton( Strings.Resources.Toast.Select , GetHashCode().ToString()+ "&sel")
                         {
                             ActivationType = ToastActivationType.Background
                         }
@@ -183,9 +176,9 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 ExpirationTime = DateTimeOffset.Now.AddMinutes(1),
                 NotificationMirroring = NotificationMirroring.Disabled,
             };
-            toast.Activated += this.ToastNotif_Activated;
-            toast.Dismissed += this.ToastNotif_Dismissed;
-            toast.Failed += this.ToastNotif_Failed;
+            toast.Activated += ToastNotif_Activated;
+            toast.Dismissed += ToastNotif_Dismissed;
+            toast.Failed += ToastNotif_Failed;
 
             // And send the notification
             toastNotifier.Show(toast);
@@ -199,9 +192,9 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             var toast = Interlocked.Exchange(ref this.toast, null);
             if (toast is null)
                 return false;
-            toast.Dismissed -= this.ToastNotif_Dismissed;
-            toast.Failed -= this.ToastNotif_Failed;
-            toast.Activated -= this.ToastNotif_Activated;
+            toast.Dismissed -= ToastNotif_Dismissed;
+            toast.Failed -= ToastNotif_Failed;
+            toast.Activated -= ToastNotif_Activated;
             toastNotifier.Hide(toast);
             return true;
         }
@@ -235,9 +228,9 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 if (args.Argument.EndsWith("sel"))
                 {
                     var index = int.Parse(args.UserInput["lrc"].ToString());
-                    var item = this.lrcCandidates[index];
-                    this.lrcCandidates.RemoveAt(index);
-                    this.lrcCandidates.Insert(0, item);
+                    var item = lrcCandidates[index];
+                    lrcCandidates.RemoveAt(index);
+                    lrcCandidates.Insert(0, item);
                 }
                 sendSelection();
             }
@@ -248,7 +241,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             try
             {
                 StoreServicesCustomEventLogger.GetDefault().Log("Request Lyrics Cached");
-                await this.request.SendResponseAsync(new ValueSet { ["status"] = 1, ["result"] = lrc });
+                await request.SendResponseAsync(new ValueSet { ["status"] = 1, ["result"] = lrc });
             }
             finally
             {
@@ -262,13 +255,13 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             {
                 cache = new Cache
                 {
-                    Album = this.album,
-                    Artist = this.artist,
-                    Title = this.title,
+                    Album = album,
+                    Artist = artist,
+                    Title = title,
                     Lrc = lrc,
                 };
                 StoreServicesCustomEventLogger.GetDefault().Log("Request Lyrics Succeed");
-                await this.request.SendResponseAsync(new ValueSet { ["status"] = 1, ["result"] = lrc });
+                await request.SendResponseAsync(new ValueSet { ["status"] = 1, ["result"] = lrc });
             }
             finally
             {
@@ -281,7 +274,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             try
             {
                 StoreServicesCustomEventLogger.GetDefault().Log("Request Lyrics Failed " + message);
-                await this.request.SendResponseAsync(new ValueSet { ["status"] = 0 });
+                await request.SendResponseAsync(new ValueSet { ["status"] = 0 });
             }
             finally
             {
@@ -293,7 +286,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             try
             {
-                foreach (var info in this.lrcCandidates)
+                foreach (var info in lrcCandidates)
                 {
                     foreach (var item in info)
                     {
@@ -301,7 +294,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                         try
                         {
                             Debug.WriteLine($"Load lrc: {item}, {GetHashCode()}");
-                            lrc = await item.FetchLryics();
+                            lrc = await item.FetchAsync();
                         }
                         catch
                         {
@@ -327,26 +320,26 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         public void Close()
         {
             closeToast();
-            var def = Interlocked.Exchange(ref this.deferral, null);
+            var def = Interlocked.Exchange(ref deferral, null);
             if (def is null)
                 return;
-            this.request = null;
-            this.connection = null;
+            request = null;
+            connection = null;
             def.Complete();
             semaphore.Release();
         }
 
-        private void sortResult() => this.lrcCandidates.Sort((i, j) =>
+        private void sortResult() => lrcCandidates.Sort((i, j) =>
         {
             return getScore(i.Key).CompareTo(getScore(j.Key));
 
             int getScore((string Title, string Artist, string Album) info)
             {
-                var td = distance(info.Title, this.title);
+                var td = distance(info.Title, title);
 
-                var ad = distance(info.Artist, this.artist);
+                var ad = distance(info.Artist, artist);
 
-                var ud = distance(info.Album, this.album);
+                var ud = distance(info.Album, album);
 
                 // title has more weight.
                 return td * 20 + ad * 8 + ud * 4;

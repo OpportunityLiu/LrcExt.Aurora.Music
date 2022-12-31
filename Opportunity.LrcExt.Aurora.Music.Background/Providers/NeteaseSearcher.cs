@@ -15,48 +15,42 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     internal sealed class NeteaseSearcher : ISearcher
     {
-        private static HttpClient httpClient = new HttpClient
-        {
-            DefaultRequestHeaders =
-            {
-                Referer = new Uri("http://music.163.com/"),
-                Cookie =
-                {
-                    new Windows.Web.Http.Headers.HttpCookiePairHeaderValue("appver","1.5.0.75771"),
-                },
-            }
-        };
+        private static HttpClient httpClient = _CreateClient();
 
-        private static readonly Uri SEARCH_URI = new Uri("http://music.163.com/api/search/pc");
+        private static HttpClient _CreateClient()
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Referer = new Uri("https://music.163.com/");
+            client.DefaultRequestHeaders.Add("Origin", "https://music.163.com");
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54");
+            return client;
+        }
+
+        private static readonly Uri SEARCH_URI = new Uri("https://music.163.com/api/search/pc");
 
         private static readonly DataContractJsonSerializer searchJsonSerializer = new DataContractJsonSerializer(typeof(SearchResult));
 
-        public IAsyncOperation<IEnumerable<ILrcInfo>> FetchLrcListAsync(string artist, string title)
+        public async Task<IEnumerable<LrcInfo>> FetchLrcListAsync(string artist, string title)
         {
-            return AsyncInfo.Run<IEnumerable<ILrcInfo>>(async token =>
+            var s = new Dictionary<string, string>
             {
-                var s = new Dictionary<string, string>
-                {
-                    ["s"] = title,
-                    ["offset"] = "0",
-                    ["limit"] = "5",
-                    ["type"] = "1",
-                };
-                var r = await httpClient.PostAsync(SEARCH_URI, new HttpFormUrlEncodedContent(s));
-                var buf = await r.Content.ReadAsBufferAsync();
-                using (var stream = buf.AsStream())
-                {
-                    var data = (SearchResult)searchJsonSerializer.ReadObject(stream);
-                    if (data.code != 200 || data.result.songs is null || data.result.songs.Length == 0)
-                        return Array.Empty<ILrcInfo>();
-                    var lrc = new NeteaseLrcInfo[data.result.songs.Length];
-                    for (var i = 0; i < lrc.Length; i++)
-                    {
-                        lrc[i] = new NeteaseLrcInfo(data.result.songs[i]);
-                    }
-                    return lrc;
-                }
-            });
+                ["s"] = title,
+                ["offset"] = "0",
+                ["limit"] = "5",
+                ["type"] = "1",
+            };
+            var r = await httpClient.PostAsync(SEARCH_URI, new HttpFormUrlEncodedContent(s));
+            var buf = await r.Content.ReadAsBufferAsync();
+            using var stream = buf.AsStream();
+            var data = (SearchResult)searchJsonSerializer.ReadObject(stream);
+            if (data.code != 200 || data.result.songs is null || data.result.songs.Length == 0)
+                return Array.Empty<LrcInfo>();
+            var lrc = new NeteaseLrcInfo[data.result.songs.Length];
+            for (var i = 0; i < lrc.Length; i++)
+            {
+                lrc[i] = new NeteaseLrcInfo(data.result.songs[i]);
+            }
+            return lrc;
         }
 
         private sealed class NeteaseLrcInfo : LrcInfo
@@ -86,39 +80,20 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                       song.artists is null ? "" : string.Join(", ", song.artists.Select(a => a?.name ?? "")),
                       song?.album?.name ?? "")
             {
-                this.id = song.id;
+                id = song.id;
             }
 
             private readonly int id;
 
-            public override IAsyncOperation<string> FetchLryics()
+            protected override async Task<string> FetchDataAsync()
             {
-                return AsyncInfo.Run(async token =>
-                {
-                    var uri = new Uri($"http://music.163.com/api/song/lyric?os=pc&id={this.id.ToString()}&lv=-1");
-                    var buf = await httpClient.GetBufferAsync(uri);
-                    using (var stream = buf.AsStream())
-                    {
-                        var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
-                        if (data.code != 200 || data?.lrc?.lyric is null)
-                            return "";
-                        var lyric = Lyrics.Parse<Line>(data.lrc.lyric).Lyrics;
-                        if (lyric.Lines.Count == 0)
-                        {
-                            return null;
-                        }
-                        lyric.Lines.Sort();
-                        if (string.IsNullOrEmpty(lyric.MetaData.Title))
-                            lyric.MetaData.Title = Title;
-                        if (string.IsNullOrEmpty(lyric.MetaData.Artist))
-                            lyric.MetaData.Artist = Artist;
-                        if (string.IsNullOrEmpty(lyric.MetaData.Album))
-                            lyric.MetaData.Album = Album;
-                        if (lyric.Lines.Count != 0 && lyric.Lines[0].Timestamp != default)
-                            lyric.Lines.Add(new Line());
-                        return lyric.ToString();
-                    }
-                });
+                var uri = new Uri($"http://music.163.com/api/song/lyric?os=pc&id={id.ToString()}&lv=-1");
+                var buf = await httpClient.GetBufferAsync(uri);
+                using var stream = buf.AsStream();
+                var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
+                if (data.code != 200)
+                    return null;
+                return data?.lrc?.lyric;
             }
         }
 

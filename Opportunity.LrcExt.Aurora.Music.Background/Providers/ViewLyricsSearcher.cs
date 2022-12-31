@@ -31,17 +31,17 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         private const string url = "http://search.crintsoft.com/searchlyrics.htm";
         private const string clientUserAgent = "MiniLyrics";
         private const string clientTag = "client=\"ViewLyricsOpenSearcher\"";
-        private const string searchQueryBase = "<?xml version='1.0' encoding='utf-8' standalone='yes' ?><searchV1 client=\"ViewLyricsOpenSearcher\" artist=\"{0}\" title=\"{1}\" OnlyMatched=\"1\" />";
+        private const string searchQueryBase = "<?xml version='1.0' encoding='utf-8' ?><searchV1 artist=\"{0}\" title=\"{1}\" client=\"MiniLyrics\" RequestPage='0' />";
         private const string searchQueryPage = " RequestPage='{0}'";
 
         private static readonly byte[] magickey = Encoding.UTF8.GetBytes("Mlv1clt4.0");
 
-        public IAsyncOperation<IEnumerable<ILrcInfo>> FetchLrcListAsync(string artist, string title)
+        public Task<IEnumerable<LrcInfo>> FetchLrcListAsync(string artist, string title)
         {
-            return searchQuery(string.Format(searchQueryBase, artist, title)).AsAsyncOperation();
+            return searchQuery(string.Format(searchQueryBase, artist, title));
         }
 
-        private static async Task<IEnumerable<ILrcInfo>> searchQuery(string searchQuery)
+        private static async Task<IEnumerable<LrcInfo>> searchQuery(string searchQuery)
         {
             var r = await HttpClient.PostAsync(new Uri(url), new HttpBufferContent(assembleQuery(searchQuery).AsBuffer()));
 
@@ -144,8 +144,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 this.lrcUri = lrcUri;
             }
 
-            public override IAsyncOperation<string> FetchLryics()
-                => httpClient.GetStringAsync(this.lrcUri).AsAsyncOperation();
+            protected override Task<string> FetchDataAsync() => httpClient.GetStringAsync(lrcUri).AsTask();
         }
     }
 }

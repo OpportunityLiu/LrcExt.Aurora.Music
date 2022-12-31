@@ -8,8 +8,13 @@ using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Windows.Foundation;
 using Windows.Web.Http;
+
+// 参考
+// https://github.com/jsososo/QQMusicApi/blob/master/routes/search.js
+// https://github.com/jsososo/QQMusicApi/blob/master/routes/lyric.js
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
@@ -25,24 +30,23 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         private static readonly DataContractJsonSerializer searchJsonSerializer = new DataContractJsonSerializer(typeof(SearchResult));
 
-        public IAsyncOperation<IEnumerable<ILrcInfo>> FetchLrcListAsync(string artist, string title)
+        public async Task<IEnumerable<LrcInfo>> FetchLrcListAsync(string artist, string title)
         {
-            return AsyncInfo.Run<IEnumerable<ILrcInfo>>(async token =>
+            var res = await httpClient.PostAsync(new Uri("https://u.y.qq.com/cgi-bin/musicu.fcg"), new HttpStringContent(@$"{{""req_1"":{{""method"":""DoSearchForQQMusicDesktop"",""module"":""music.search.SearchCgiService"",""param"":{{""num_per_page"":20,""page_num"":1,""query"": ""{HttpUtility.JavaScriptStringEncode(title)}"",""search_type"":0}}}}}}"));
+            var buf = await res.Content.ReadAsBufferAsync();
+            using var stream = buf.AsStream();
+            var result = (SearchResult)searchJsonSerializer.ReadObject(stream);
+            if (result.code != 0 || result.req_1.code != 0 || result.req_1.data.code != 0)
+                return Array.Empty<LrcInfo>();
+            var ret = result.req_1.data.body;
+            if (ret?.song?.list is null || ret.song.list.Length == 0)
+                return Array.Empty<LrcInfo>();
+            var lrc = new QQLrcInfo[ret.song.list.Length];
+            for (var i = 0; i < lrc.Length; i++)
             {
-                var buf = await httpClient.GetBufferAsync(new Uri("https://c.y.qq.com/soso/fcgi-bin/client_search_cp?format=json&remoteplace=txt.yqq.song&w=" + title));
-                using (var stream = buf.AsStream())
-                {
-                    var data = (SearchResult)searchJsonSerializer.ReadObject(stream);
-                    if (data.code != 0 || data.data.song.list is null || data.data.song.list.Length == 0)
-                        return Array.Empty<ILrcInfo>();
-                    var lrc = new QQLrcInfo[data.data.song.list.Length];
-                    for (var i = 0; i < lrc.Length; i++)
-                    {
-                        lrc[i] = new QQLrcInfo(data.data.song.list[i]);
-                    }
-                    return lrc;
-                }
-            });
+                lrc[i] = new QQLrcInfo(ret.song.list[i]);
+            }
+            return lrc;
         }
 
         private sealed class QQLrcInfo : LrcInfo
@@ -59,48 +63,29 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             }
 
             internal QQLrcInfo(Song song)
-                : base(song.songname ?? "",
-                      song.singer is null ? "" : string.Join(", ", song.singer.Select(s => s?.name ?? "")),
-                      song.albumname ?? "")
+                : base(song.title ?? "",
+                       song.singer?.Select(s => s?.name ?? ""),
+                       song.album?.name ?? "")
             {
-                this.id = song.songid;
+                id = song.id;
             }
 
             private readonly int id;
 
-            public override IAsyncOperation<string> FetchLryics()
+            protected override async Task<string> FetchDataAsync()
             {
-                return AsyncInfo.Run(async token =>
-                {
-                    var uri = new Uri("https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?format=json&callback=cb&musicid=" + this.id);
-                    var str = await httpClient.GetStringAsync(uri);
-                    str = str.Substring(3, str.Length - 4);
-                    using (var stream = Encoding.UTF8.GetBytes(str).AsBuffer().AsStream())
-                    {
-                        var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
-                        if (data.code != 0 || string.IsNullOrEmpty(data.lyric) ||
-                            //"[00:00:00]此歌曲为没有填词的纯音乐，请您欣赏"
-                            data.lyric == "WzAwOjAwOjAwXeatpOatjOabsuS4uuayoeacieWhq+ivjeeahOe6r+mfs+S5kO+8jOivt+aCqOaso+i1jw==")
-                            return "";
-                        var lyric = Lyrics.Parse<Line>(Encoding.UTF8.GetString(Convert.FromBase64String(data.lyric))).Lyrics;
-                        if (lyric.Lines.Count == 0)
-                        {
-                            return null;
-                        }
-                        lyric.Lines.Sort();
-                        if (string.IsNullOrEmpty(lyric.MetaData.Title))
-                            lyric.MetaData.Title = Title;
-                        if (string.IsNullOrEmpty(lyric.MetaData.Artist))
-                            lyric.MetaData.Artist = Artist;
-                        if (string.IsNullOrEmpty(lyric.MetaData.Album))
-                            lyric.MetaData.Album = Album;
-                        if (lyric.Lines.Count != 0 && lyric.Lines[0].Timestamp != default)
-                            lyric.Lines.Add(new Line());
-                        return lyric.ToString();
-                    }
-                });
+                var uri = new Uri("https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?format=json&musicid=" + id);
+                var buf = await httpClient.GetBufferAsync(uri);
+                using var stream = buf.AsStream();
+                var data = (LrcResult)lrcJsonSerializer.ReadObject(stream);
+                if (data.code != 0 || string.IsNullOrEmpty(data.lyric) ||
+                    //"[00:00:00]此歌曲为没有填词的纯音乐，请您欣赏"
+                    data.lyric == "WzAwOjAwOjAwXeatpOatjOabsuS4uuayoeacieWhq+ivjeeahOe6r+mfs+S5kO+8jOivt+aCqOaso+i1jw==")
+                    return null;
+                return Encoding.UTF8.GetString(Convert.FromBase64String(data.lyric));
             }
         }
+
 
         [DataContract]
         public class SearchResult
@@ -108,7 +93,23 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             [DataMember]
             public int code { get; set; }
             [DataMember]
-            public Data data { get; set; }
+            public SearchReqResult req_1 { get; set; }
+        }
+        [DataContract]
+        public class SearchReqResult
+        {
+            [DataMember]
+            public int code { get; set; }
+            [DataMember]
+            public SearchReqResultData data { get; set; }
+        }
+        [DataContract]
+        public class SearchReqResultData
+        {
+            [DataMember]
+            public int code { get; set; }
+            [DataMember]
+            public Data body { get; set; }
         }
 
         [DataContract]
@@ -133,15 +134,23 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             [DataMember]
             public Singer[] singer { get; set; }
             [DataMember]
-            public int songid { get; set; }
+            public int id { get; set; }
             [DataMember]
-            public string songname { get; set; }
+            public string title { get; set; }
             [DataMember]
-            public string albumname { get; set; }
+            public Album album { get; set; }
         }
 
         [DataContract]
         public class Singer
+        {
+            [DataMember]
+            public int id { get; set; }
+            [DataMember]
+            public string name { get; set; }
+        }
+        [DataContract]
+        public class Album
         {
             [DataMember]
             public int id { get; set; }

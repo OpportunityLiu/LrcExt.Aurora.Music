@@ -20,11 +20,11 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             ActivationBackgroundTask.Register();
             var appService = (AppServiceTriggerDetails)taskInstance.TriggerDetails;
             this.taskInstance = taskInstance;
-            this.taskDeferral = taskInstance.GetDeferral();
-            this.appServiceConnection = appService.AppServiceConnection;
+            taskDeferral = taskInstance.GetDeferral();
+            appServiceConnection = appService.AppServiceConnection;
             this.taskInstance.Canceled += OnBackgroundTaskCanceled;
-            this.appServiceConnection.RequestReceived += OnAppServiceRequestReceived;
-            this.appServiceConnection.ServiceClosed += OnServiceClosed;
+            appServiceConnection.RequestReceived += OnAppServiceRequestReceived;
+            appServiceConnection.ServiceClosed += OnServiceClosed;
         }
 
         private void OnBackgroundTaskCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
@@ -49,15 +49,15 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
             if (taskDeferral is null)
                 return;
 
-            AppServiceHandler.RemoveUnused(this.appServiceConnection);
+            AppServiceHandler.RemoveUnused(appServiceConnection);
 
-            this.appServiceConnection.RequestReceived -= OnAppServiceRequestReceived;
-            this.appServiceConnection.ServiceClosed -= OnServiceClosed;
-            this.appServiceConnection.Dispose();
-            this.appServiceConnection = null;
+            appServiceConnection.RequestReceived -= OnAppServiceRequestReceived;
+            appServiceConnection.ServiceClosed -= OnServiceClosed;
+            appServiceConnection.Dispose();
+            appServiceConnection = null;
 
-            this.taskInstance.Canceled -= OnBackgroundTaskCanceled;
-            this.taskInstance = null;
+            taskInstance.Canceled -= OnBackgroundTaskCanceled;
+            taskInstance = null;
 
             taskDeferral.Complete();
         }

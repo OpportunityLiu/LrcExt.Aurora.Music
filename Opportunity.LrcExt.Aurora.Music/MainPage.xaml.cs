@@ -29,14 +29,14 @@ namespace Opportunity.LrcExt.Aurora.Music
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             var version = Package.Current.Id.Version.ToVersion();
-            this.tbVersion.Text = $"{Strings.Resources.App.DisplayName} {version}";
+            tbVersion.Text = $"{Strings.Resources.App.DisplayName} {version}";
             Dispatcher.Begin(async () =>
             {
                 var r = await Launcher.QueryUriSupportAsync(AuroraSettings, LaunchQuerySupportType.Uri);
-                this.canLaunch = (r == LaunchQuerySupportStatus.Available);
-                this.Bindings.Update();
+                canLaunch = (r == LaunchQuerySupportStatus.Available);
+                Bindings.Update();
                 StoreServicesCustomEventLogger.GetDefault().Log("Main View Launched");
             });
         }

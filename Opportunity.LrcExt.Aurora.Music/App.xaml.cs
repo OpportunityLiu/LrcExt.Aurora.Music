@@ -28,8 +28,8 @@ namespace Opportunity.LrcExt.Aurora.Music
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         protected override void OnActivated(IActivatedEventArgs args)
