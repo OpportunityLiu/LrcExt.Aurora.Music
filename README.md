@@ -1,6 +1,8 @@
 # LrcExt.Aurora.Music
 Online lyrics extension for https://github.com/pkzxs/Aurora.Music  
 
-<a href="ms-windows-store://pdp/?ProductId=9P851Q321TD3&cid=github&mode=mini">
-   <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Get it from Microsoft" />
+<p align="center">
+<a href="https://www.microsoft.com/store/apps/9P851Q321TD3?cid=github">
+   <img src="https://get.microsoft.com/images/en-us%20dark.svg" width=200  alt="Get it from Microsoft" />
 </a>
+</p>
