@@ -32,7 +32,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 
         public async Task<IEnumerable<LrcInfo>> FetchLrcListAsync(string artist, string title)
         {
-            var res = await httpClient.PostAsync(new Uri("https://u.y.qq.com/cgi-bin/musicu.fcg"), new HttpStringContent(@$"{{""req_1"":{{""method"":""DoSearchForQQMusicDesktop"",""module"":""music.search.SearchCgiService"",""param"":{{""num_per_page"":20,""page_num"":1,""query"": ""{HttpUtility.JavaScriptStringEncode(title)}"",""search_type"":0}}}}}}"));
+            var res = await httpClient.PostAsync(new Uri("https://u.y.qq.com/cgi-bin/musicu.fcg"), new HttpStringContent($@"{{""req_1"":{{""method"":""DoSearchForQQMusicDesktop"",""module"":""music.search.SearchCgiService"",""param"":{{""num_per_page"":20,""page_num"":1,""query"": ""{HttpUtility.JavaScriptStringEncode(title)}"",""search_type"":0}}}}}}"));
             var buf = await res.Content.ReadAsBufferAsync();
             using var stream = buf.AsStream();
             var result = (SearchResult)searchJsonSerializer.ReadObject(stream);

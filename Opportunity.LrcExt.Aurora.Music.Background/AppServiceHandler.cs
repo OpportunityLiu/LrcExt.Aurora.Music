@@ -13,7 +13,7 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
 {
     internal sealed class AppServiceHandler
     {
-        private static readonly SemaphoreSlim semaphore = new(1, 1);
+        private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
         private static readonly ToastNotifier toastNotifier = ToastNotificationManager.CreateToastNotifier();
 
         private class Cache
