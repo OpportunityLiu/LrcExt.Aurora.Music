@@ -124,7 +124,6 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Resources\Strings.g.cs" />
     <Compile Include="Providers\TTSearcher.cs" />
-    <Compile Include="Providers\ViewLyricsSearcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

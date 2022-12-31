@@ -13,7 +13,6 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
     internal static class Searchers
     {
         public static ISearcher NeteaseSearcher { get; } = new NeteaseSearcher();
-        public static ISearcher ViewLyricsSearcher { get; } = new ViewLyricsSearcher();
         public static ISearcher TTSearcher { get; } = new TTSearcher();
         public static ISearcher QQSearcher { get; } = new QQSearcher();
 
@@ -21,10 +20,9 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
         {
             get
             {
-            //    yield return NeteaseSearcher;
-                //yield return QQSearcher;
-                 yield return ViewLyricsSearcher;
-                //yield return TTSearcher;
+                yield return NeteaseSearcher;
+                yield return QQSearcher;
+                yield return TTSearcher;
             }
         }
     }
