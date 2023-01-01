@@ -1,5 +1,5 @@
 # LrcExt.Aurora.Music
-Online lyrics extension for https://github.com/pkzxs/Aurora.Music  
+Online lyrics extension for https://github.com/xiaosu-zhu/Aurora.Music  
 
 <p align="center">
 <a href="https://www.microsoft.com/store/apps/9P851Q321TD3?cid=github">
