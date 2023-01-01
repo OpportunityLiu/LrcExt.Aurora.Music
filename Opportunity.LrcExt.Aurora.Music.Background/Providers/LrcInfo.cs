@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Opportunity.LrcParser;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using Opportunity.LrcParser;
+using System.Web;
 
 namespace Opportunity.LrcExt.Aurora.Music.Background
 {
@@ -45,6 +45,18 @@ namespace Opportunity.LrcExt.Aurora.Music.Background
                 else
                     lyrics.Lines.Insert(0, new Line());
             }
+            foreach (var line in lyrics.Lines)
+            {
+                line.Content = HttpUtility.HtmlDecode(line.Content);
+            }
+            foreach (var meta in MetaDataType.PreDefined.Values)
+            {
+                if(meta.DataType == typeof(string) && lyrics.MetaData.TryGetValue(meta, out var value))
+                {
+                    lyrics.MetaData[meta] = HttpUtility.HtmlDecode(value);
+                }
+            }
+            lyrics.PreApplyOffset();
             return lyrics.ToString();
         }
 
